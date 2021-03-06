@@ -1,0 +1,39 @@
+DATA MODEL:
+The object below shows how users, decks, and cards are saved in the database.
+
+user : {
+  _id: {...},
+  decks:{
+    deck1: {
+      card1: {
+        question: question,
+        answer: answer,
+      },
+      card2: {
+        question: question,
+        answer: answer,
+      },
+    },
+    deck2: {
+      card1: {
+        question: question,
+        answer: answer,
+      },
+      card2: {
+        question: question,
+        answer: answer,
+      },
+    },
+    deck3: {
+      card1: {
+        question: question,
+        answer: answer,
+      },
+      card2: {
+        question: question,
+        answer: answer,
+      },
+    },
+  }
+
+}
