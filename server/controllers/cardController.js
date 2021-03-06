@@ -3,16 +3,23 @@ const models = require('../models/cardModels');
 const cardController = {};
 
 cardController.createCard = function(req, res, next){
-    //
+    Card.insertOne({cardNumber: req.body.cardNumber, question: req.body.question, answer: req.body.answer }, (err, doc)=>{
+        if(err){
+            next(err);
+        } else {
+            res.locals.newCard = doc;
+            next();
+        }
+    })
 };
 
 cardController.findCard = function(req, res, next){
-    Card.find({}, 'question answer', (err, doc)=>{
+    Card.find({ cardNumber: req.body.cardNumber }, (err, doc)=>{
         if(err){
-            
+            next(err);
         } else {
-            res.locals = doc;
-            next();
+            res.locals.cards = doc;
+            next()
         }
     })
 };

@@ -18,7 +18,9 @@ const Schema = mongoose.Schema;
 USER SCHEMA
 */
 const userSchema = new Schema({
-  // decks:[],
+  // decks:[
+    
+  // ],
   decks: [{
     deck: {
       name: { type: String, required: true },
@@ -38,7 +40,7 @@ DECK SCHEMA
 const deckSchema = new Schema({
   // deck: [Object] 
   deck: [{
-    cardNumber: { type: Number },
+    // cardNumber: { type: Number },
     // type of ObjectId makes this behave like a foreign key referencing the 'card' collection
     type: Schema.Types.ObjectId,
     ref: 'card',
@@ -52,6 +54,7 @@ const Deck = mongoose.model('deck', deckSchema);
 CARD SCHEMA
 */
 const cardSchema = new Schema({
+  cardNumber: { type: Number },
   question: { type: String, required: true },
   answer: { type: String, required: true },
 });

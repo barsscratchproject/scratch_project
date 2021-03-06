@@ -1,8 +1,9 @@
 const express = require('express');
 const path = require('path');
 const apiRouter = require('./routes/api');
-const mongoose = require('mongoose');
+
 const app = express();
+
 
 /**
  * handle parsing request body
@@ -10,7 +11,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-/** 
+/**
  * serve the bundle file
  */
 app.use('/build', express.static(path.resolve(__dirname, '../build/')));
@@ -18,6 +19,7 @@ app.use('/build', express.static(path.resolve(__dirname, '../build/')));
 /**
  * handle requests for static files
  */
+
 app.use('/', express.static(path.resolve(__dirname, '../client/')));
 
 /**
@@ -49,7 +51,7 @@ app.use((err, req, res, next) => {
  * start server
  */
 app.listen(3000, () => {
-  console.log('Server is listening on port 3000');
+  console.log('Server is listening on port 3000!');
 });
 
 module.exports = app;
