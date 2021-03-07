@@ -19,7 +19,7 @@ const Schema = mongoose.Schema;
 
 // User schema - Represents users in the application
 // minimize: false allows us to save empty objects
-const userSchema = new Schema({ userName: String, decks: [] });
+const userSchema = new Schema({ userName: String, decks: [Object] });
 
 // creates a model for the 'user' collection that will be part of the export
 module.exports = mongoose.model('user', userSchema);
