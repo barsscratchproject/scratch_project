@@ -10,7 +10,7 @@ class NavBar extends Component {
     super(props);
     this.state = {
       // decks: [{'topic': 'math'; cards: {}}, {'topic': 'history'}, {'topic': 'health'}]
-      decks: ['math', 'physics', 'python'],
+      decks: ['math', 'physics', 'python', 'polisci', 'redux', 'latin', 'anatomy', 'history', 'chemistry']
     };
   }
   render() {

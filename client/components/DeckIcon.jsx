@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const DeckIcon = () => {
-  return (
-    <article className="deck deckItem">
-      <h3 className="deckHeader">Hi from DeckIcon</h3>
-      <div className="deckBtnOptions">
-        <button type="button" onClick={() => alert('testing 1')}>
-          Edit Card
-        </button>
-        <button type="button" onClick={() => alert('testing 2')}>
-          Delete Card
-        </button>
+class DeckIcon extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    // console.log('DECK ICON this.props.decks', this.props.decks);
+    // console.log('DECK ICON this.props.topics', this.props.topic);
+
+    return (
+      // <h1>THIS IS AN ICON</h1>
+      <div className="singleDeckIcon">
+        <h1 className="oneDeck">{this.props.topic}</h1>
+        <div className="quizBtnContainer">
+          <button className="singleDeckQuizMeBtn">Quiz me!</button>
+        </div>
+        <div className="editBtnContainer">
+          <button className="singleDeckEditBtn">Edit</button>
+          <button className="singleDeckDeleteBtn">Delete</button>
+        </div>
       </div>
-    </article>
-  );
-};
+    );
+  }
+}
+
 export default DeckIcon;
+

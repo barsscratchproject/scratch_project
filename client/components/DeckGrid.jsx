@@ -9,16 +9,14 @@ class DeckGrid extends Component {
     super(props);
   }
   render() {
-    console.log('DECKS CONTAINER this.props.decks', this.props.decks);
+    console.log('DECK GRID this.props.decks', this.props.decks);
     const decks = [];
     for (let i = 0; i < this.props.decks.length; i++) {
-      const currDeck = this.props.decks[i];
-      <DeckIcon key={`Deck${i}`} text={currDeck[i]} />;
+      // const currDeck = this.props.decks[i];
+      decks.push(<DeckIcon key={`Deck${i}`} topic={this.props.decks[i]} />);
     }
     return (
       <div className="deckGrid">
-        {/* <CreateDeck /> */}
-        {/* <section>{decks}</section> */}
         {decks}
       </div>
     );

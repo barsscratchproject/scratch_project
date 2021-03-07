@@ -5,26 +5,13 @@ body {
   padding: 0px 0px;
 }
 
+/* Navbar styling; appears on the top of every page */
 .navBar {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   border: 1px solid greenyellow;
   width: 100%;
-}
-
-/* Header at top of dashboard, BEFORE/ABOVE deckscontainer display */
-.welcomeUser {
-  color: rgb(0, 0, 110);
-  font-family: 'Fascinate';
-  display: flex;
-  justify-content: center;
-}
-
-.dashboardBox {
-  width: 100%;
-  border: 1px solid red;
-  background-color: lavender;
 }
 
 .logo {
@@ -34,43 +21,63 @@ body {
   margin-left: 20px;
 }
 
-.deckGrid {
+/* 
+Header at top of dashboard page, BEFORE/ABOVE deckscontainer display
+displays the text "Welcome, User!" 
+*/
+.welcomeUser {
+  color: rgb(0, 0, 110);
+  font-family: 'Fascinate';
   display: flex;
+  justify-content: center;
+}
+
+/* ENTIRE dashboard container underneath the "welcome, user" header */
+.dashboardBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 99%;
+  border: 1px solid red;
+  background-color: lavender;
+}
+
+/* Grid inside dashboard box; contains add deck and all other deck icons */
+.deckGrid {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 50px;
   width: 90%;
   border: 1px solid orange;
-  background-color: gray;
+  background-color: rgb(214, 210, 210);
 }
 
-.deck {
-  border: 1px solid rgb(13, 241, 51);
-  background: #f3f3f3;
-  padding: 2rem;
-  /* border: 1px solid lightgray; */
-  box-shadow: 1px 1px 5px rgba(22, 22, 22, 0.915);
+/* A single deck icon as rendered on the dashboard page */
+.singleDeckIcon {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid blue;
+  width: 200px;
+  height: 200px;
 }
 
-/* deck grid container */
-.deckContainer {
-  padding: 1rem 3rem;
-  display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
+/* Dashboard page single deck h1 topic header */
+.oneDeck {
+  color: rgb(214, 43, 71);
 }
 
-/* single deck container in dashboard */
-.deckItem {
-  display: grid;
-  grid-row-gap: 1rem;
-  margin: 0.5rem;
+/* Dashboard page single deck "quiz me" button */
+.singleDeckQuizMeBtn {
+  color: green;
 }
 
-h3.deckHeader {
-  font-size: 2rem;
-  color: purple;
+/* Dashboard page single deck "edit" and "delete" buttons container */
+.singleDeckEditBtns {
+  color: blue;
 }
 
-/* deck container
-.deckCard {
-  display: grid;
-  grid-row-gap: 1rem;
-  margin: 0.5rem;
-} */
+/* Dashboard page single deck h1 topic header  */
+.singleDeckQuizMeBtn {
+
+}
