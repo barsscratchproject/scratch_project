@@ -1,13 +1,19 @@
 const express = require('express');
-
 const userController = require('../controllers/userController');
-const deckController = require('../controllers/deckController');
-const cardController = require('../controllers/cardController');
-
 const router = express.Router();
 
-router.post('/user', userController.createUser);
+// User...
+// ...finds existing user
 router.get('/user/:user', userController.findUser);
-router.patch('/user/:user', userController.addDeck);
+// ...creates user
+router.post('/user', userController.createUser);
+
+// Decks...
+// ...finds existing deck for user (:user)
+router.get('/deck', userController.findDeck);
+// ...creates new deck for existing user (:user)
+router.patch('/user/deck/:user', userController.createDeck);
+
+// Cards...
 
 module.exports = router;

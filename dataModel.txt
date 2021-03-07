@@ -1,6 +1,74 @@
-DATA MODEL:
-The object below shows how users, decks, and cards are saved in the database.
+DATA MODELS
+The models below show different potential ways to organize data in the mongoDB database.
 
+Data Model One - Nested Objects
+users : {
+  user1:{
+    userName: “John”,
+    decks: {
+      react: {
+        0: { q: “q”, a: “a” },
+        1: { q: “q”, a: “a” },
+        2: { q: “q”, a: “a” },	
+      },
+      math: {
+        0: { q: “q”, a: “a” },
+        1: { q: “q”, a: “a” },
+        2: { q: “q”, a: “a” },
+        },
+      geography: {
+        0: { q: “q”, a: “a” },
+        1: { q: “q”, a: “a” },
+        2: { q: “q”, a: “a” },
+      },
+    }
+  },
+  user2:{
+    userName: "Mary”,
+    decks: {
+      react: {
+        0: { q: “q”, a: “a” },
+        1: { q: “q”, a: “a” },
+        2: { q: “q”, a: “a” },	
+      },
+      math: {
+        0: { q: “q”, a: “a” },
+        1: { q: “q”, a: “a” },
+        2: { q: “q”, a: “a” },
+        },
+      geography: {
+        0: { q: “q”, a: “a” },
+        1: { q: “q”, a: “a” },
+        2: { q: “q”, a: “a” },
+      },
+    }
+  },
+}
+
+
+Users: {
+  user1 : {
+    userName: “John”,
+    decks: {
+      react: {
+        topic: “react”,
+        cards: {
+          0: { q: “q”, a: “a” },
+          1: { q: “q”, a: “a” },
+          2: { q: “q”, a: “a” },
+        }
+      },
+      math: {
+        topic: “math”,
+        cards: {
+          0: { q: “q”, a: “a” },
+          1: { q: “q”, a: “a” },
+          2: { q: “q”, a: “a” },
+        }
+      },
+    }
+	}
+}
 
 
 user : {

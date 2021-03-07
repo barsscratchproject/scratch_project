@@ -17,43 +17,9 @@ mongoose
 
 const Schema = mongoose.Schema;
 
-/*
-USER SCHEMA
-*/
-const userSchema = new Schema({
-  userName: String,
-  decks: [],
-});
+// User schema - Represents users in the application
+// minimize: false allows us to save empty objects
+const userSchema = new Schema({ userName: String, decks: [] });
 
-// creats a model for the 'user' collection that will be part of the export
-const User = mongoose.model('user', userSchema);
-
-/*
-DECK SCHEMA
-*/
-const deckSchema = new Schema({
-  topic: String,
-  cards: [Object],
-});
-
-// creats a model for the 'deck' collection that will be part of the export
-const Deck = mongoose.model('deck', deckSchema);
-
-/*
-CARD SCHEMA
-*/
-const cardSchema = new Schema({
-  cardNumber: { type: Number },
-  question: { type: String, required: true },
-  answer: { type: String, required: true },
-});
-
-// creats a model for the 'card' collection that will be part of the export
-const Card = mongoose.model('card', cardSchema);
-
-// exports all the models in an object to be used in the controller
-module.exports = {
-  User,
-  Deck,
-  Card,
-};
+// creates a model for the 'user' collection that will be part of the export
+module.exports = mongoose.model('user', userSchema);
