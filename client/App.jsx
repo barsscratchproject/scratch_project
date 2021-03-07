@@ -7,16 +7,21 @@ import './styles.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    //   this.state = {
+    //     // decks: [{'topic': 'math'; cards: {}}, {'topic': 'history'}, {'topic': 'health'}]
+    //     decks: ['math', 'physics', 'python'],
+    //   };
+    // }
+    // createDeck(event) {
+    //   deckList.push()
+    //   this.setState({
+    //     deckList: deckList
+    //   })
+    // }
   }
-
   render() {
     return (
       <div>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fascinate&display=swap"
-          rel="stylesheet"
-        />
         <NavBar />
       </div>
     );

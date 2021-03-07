@@ -1,17 +1,51 @@
 body {
+  background-color: rgb(184, 184, 240);
+  width: 100%;
+  margin: 0px 0px;
+  padding: 0px 0px;
+}
+
+.navBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border: 1px solid greenyellow;
+  width: 100%;
+}
+
+/* Header at top of dashboard, BEFORE/ABOVE deckscontainer display */
+.welcomeUser {
+  color: rgb(0, 0, 110);
+  font-family: 'Fascinate';
+  display: flex;
+  justify-content: center;
+}
+
+.dashboardBox {
+  width: 100%;
+  border: 1px solid red;
   background-color: lavender;
 }
 
-h1 {
-  color: blue;
-  font-family: 'Fascinate';
+.logo {
+  display: inline-block;
+  font-size: 1rem;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.deckGrid {
+  display: flex;
+  width: 90%;
+  border: 1px solid orange;
+  background-color: gray;
 }
 
 .deck {
-  color: red;
+  border: 1px solid rgb(13, 241, 51);
   background: #f3f3f3;
   padding: 2rem;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   box-shadow: 1px 1px 5px rgba(22, 22, 22, 0.915);
 }
 
@@ -19,7 +53,7 @@ h1 {
 .deckContainer {
   padding: 1rem 3rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
 }
 
 /* single deck container in dashboard */
