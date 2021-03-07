@@ -1,16 +1,12 @@
 const express = require('express');
 
-const cardController = require('../controllers/cardController');
+const userController = require('../controllers/userController');
 const deckController = require('../controllers/deckController');
+const cardController = require('../controllers/cardController');
 
 const router = express.Router();
 
-router.get('/',
-  deckController.findDeck,
-  (req, res) => res.status(200).json(res.locals.currentDeck));
-
-router.post('/',
-  deckController.createDeck,
-  (req, res) => res.status(200).json(res.locals.decks));
+router.post('/user', userController.createUser);
+router.get('/user/:user', userController.findUser);
 
 module.exports = router;
