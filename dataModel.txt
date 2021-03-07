@@ -1,9 +1,11 @@
 DATA MODEL:
 The object below shows how users, decks, and cards are saved in the database.
 
+
+
 user : {
   _id: {...},
-  decks:{
+  decks:[
     deck1: {
       card1: {
     question: question,
@@ -34,6 +36,84 @@ user : {
         answer: answer,
       },
     },
+  ]
+
+}
+
+if(decks.topic === 'react'){
+  // iterate through cards array
+}
+
+return decks.cards
+decks[cards]
+user : {
+  _id: {...},
+  decks:[ {
+    topic: "react",
+    cards: {
+      1: {
+        question: what is the question?,
+        answer: here is the answer!
+      },
+      2: {
+        question: where is the question?,
+        answer: the answer is over here!
+      },
+      3: {
+        question: how many questions?,
+        answer: so many answers!
+      },
+    }
   }
+    
+  ]
+}
+    
+
+user : {
+_id: {...},
+  decks:[
+    { topic: "react",
+      cards: [
+        {question: question?, answer: answer!},
+        {question: question?, answer: answer!},
+        {question: question?, answer: answer!},
+      ]
+    }
+  ]
+}   
+    
+    }
+    deck1: {
+      card1: {
+        question: question,
+        answer: answer,
+      },
+      card2: {
+        question: question,
+        answer: answer,
+      },
+    },
+    deck2: {
+      card1: {
+        question: question,
+        answer: answer,
+      },
+      card2: {
+        question: question,
+        answer: answer,
+      },
+    },
+    deck3: {
+      card1: {
+        question: question,
+        answer: answer,
+      },
+      card2: {
+        question: question,
+        answer: answer,
+      }
+    },
+  ]
 
 }

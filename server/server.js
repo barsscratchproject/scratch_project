@@ -4,7 +4,6 @@ const apiRouter = require('./routes/api');
 
 const app = express();
 
-
 /**
  * handle parsing request body
  */
