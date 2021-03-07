@@ -2,7 +2,14 @@ const models = require('../models/cardModels');
 const deckController = {};
 
 deckController.createDeck = function(req, res, next){
-    // Deck.insertOne({})
+    Deck.insertOne({ deckName: req.body.deckName }, (err, doc)=>{
+        if(err){
+            next(err);
+        } else {
+            res.locals.newDeck = doc;
+            next();
+        }
+    })
 };
 
 deckController.findDeck = function(req, res, next){
@@ -10,7 +17,7 @@ deckController.findDeck = function(req, res, next){
         if(err){
             next(err);
         } else {
-            res.locals = docs;
+            res.locals.decks = docs;
             next();
         }
     })

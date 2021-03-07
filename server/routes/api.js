@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.get('/',
   deckController.findDeck,
-  (req, res) => res.status(200).json(res.locals.currentDeck));
+  (req, res) => res.status(200).json(res.locals.newDeck));
 
-router.post('/',
+router.post('/newdeck',
   deckController.createDeck,
   (req, res) => res.status(200).json(res.locals.decks));
 

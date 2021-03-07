@@ -27,7 +27,7 @@ app.use('/', express.static(path.resolve(__dirname, '../client/')));
  */
 app.use('/api', apiRouter);
 
-// catch-all route handler for any requests to an unknown route
+// catch-all route handler for an requests to an unknown route
 app.all('*', (req, res) => {
   res.status(404).send('Endpoint does not exist');
 });

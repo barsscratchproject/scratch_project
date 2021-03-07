@@ -6,7 +6,7 @@ user : {
   decks:{
     deck1: {
       card1: {
-        question: question,
+    question: question,
         answer: answer,
       },
       card2: {

@@ -3,7 +3,7 @@ import React from 'react';
 const NavBar = () => (
   <div>
     <button>Log Out</button>
-  </div>
+    </div>
 );
 
 export default NavBar;
