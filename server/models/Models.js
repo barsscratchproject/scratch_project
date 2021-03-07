@@ -34,15 +34,6 @@ DECK SCHEMA
 const deckSchema = new Schema({
   topic: String,
   cards: [Object],
-  // deck: [Object],
-  // deck: [
-  //   {
-  //     // cardNumber: { type: Number },
-  //     // type of ObjectId makes this behave like a foreign key referencing the 'card' collection
-  //     type: Schema.Types.ObjectId,
-  //     ref: 'card',
-  //   },
-  // ],
 });
 
 // creats a model for the 'deck' collection that will be part of the export

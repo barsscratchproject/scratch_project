@@ -29,8 +29,21 @@ userController.findUser = function (req, res, next) {
   });
 };
 
-userController.updateUser = function (req, res, next) {
-  //
+userController.addDeck = function (req, res, next) {
+  console.log('addDeck detected!');
+  User.findOneAndUpdate(
+    { userName: req.params.user },
+    { $push: { decks: req.body.deck } },
+    (err, doc) => {
+      if (err) {
+        console.log('error adding deck!');
+        return res.status(400).json(err);
+      } else {
+        console.log('user updated!');
+        return res.status(200).json('user updated!');
+      }
+    }
+  );
 };
 
 userController.deleteUser = function (req, res, next) {
