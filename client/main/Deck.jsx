@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import NavBar from '../components/NavBar.jsx';
+import CardsContainer from '../containers/CardsContainer.jsx';
 
 class Deck extends Component {
   render() {
     return (
       <div>
+        <CardsContainer />
         <h1>hey deck</h1>
         <button>Add a card</button>
         <h3>This is a card</h3>
