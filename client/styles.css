@@ -1,3 +1,42 @@
 body {
   background-color: lavender;
 }
+
+h1 {
+  color: blue;
+  font-family: 'Fascinate';
+}
+
+.deck {
+  color: red;
+  background: #f3f3f3;
+  padding: 2rem;
+  border: 1px solid lightgray;
+  box-shadow: 1px 1px 5px rgba(22, 22, 22, 0.915);
+}
+
+/* deck grid container */
+.deckContainer {
+  padding: 1rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* single deck container in dashboard */
+.deckItem {
+  display: grid;
+  grid-row-gap: 1rem;
+  margin: 0.5rem;
+}
+
+h3.deckHeader {
+  font-size: 2rem;
+  color: purple;
+}
+
+/* deck container
+.deckCard {
+  display: grid;
+  grid-row-gap: 1rem;
+  margin: 0.5rem;
+} */
