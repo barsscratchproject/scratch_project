@@ -5,24 +5,14 @@ import DecksContainer from '../containers/DecksContainer.jsx';
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      deckList: [],
-    };
   }
 
-  // createDeck(event) {
-  //   deckList.push()
-  //   this.setState({
-  //     deckList: deckList
-  //   })
-  // }
-
   render() {
+    console.log('DASHBOARD this.props.decks', this.props.decks);
     return (
       <div>
-        <h1>Welcome pals from the Dashboard</h1>
-        <DecksContainer />
+        <h1 className="welcomeUser">Welcome, User!</h1>
+        <DecksContainer decks={this.props.decks} />
       </div>
     );
   }
