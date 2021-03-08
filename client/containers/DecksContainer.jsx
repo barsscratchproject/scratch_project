@@ -11,8 +11,7 @@ class DecksContainer extends Component {
     console.log('DECKS CONTAINER this.props.decks', this.props.decks);
     return (
       <div className="dashboardBox">
-        <h1>Hi from DecksContainer</h1>
-        <button>Create New Deck</button>
+        {/* <h1>Hi from DecksContainer</h1> */}
         <DeckGrid decks={this.props.decks} />
       </div>
     );
