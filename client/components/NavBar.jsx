@@ -9,12 +9,24 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      decks: [],
+      // username: '',
+      // decks: [],
+      username: 'Stacy',
+      decks: ['math', 'physics', 'python', 'polisci', 'redux', 'latin', 'anatomy', 'history', 'chemistry'],
+      mathCards: [
+        {question: 'What is the capital of New York State?', answer: 'Albany'},
+        {question: 'What is the relationship between displacement, time interval and average velocity of an object travelling in uniform motion?', answer: 'When d gets larger and t is constant, the average velocity gets larger. When t gets larger, and d is constant, the average velocity gets smaller. When av gets larger, the slope position of a position time (dt) graph gets steeper.'},
+        {question: '2 + 2', answer: '4'},
+        {question: '2 + 4', answer: '6'},
+        {question: '2 + 6', answer: '8'},
+        {question: '2 + 8', answer: '10'},
+        {question: '2 + 10', answer: '12'}
+      ]
     };
+  };
 
-    this.userLogin = this.userLogin.bind(this);
-  }
+    // this.userLogin = this.userLogin.bind(this);
+  
 
   /*
   createUser(event) {
@@ -29,23 +41,23 @@ class NavBar extends Component {
   */
 
   // login and get all the decks for the logged-in user
-  userLogin(event) {
+  // userLogin(event) {
     // get the username (inputted by user)
-    const userInput = document.getElementById('login').value;
+    // const userInput = document.getElementById('login').value;
 
-    // get the decks of the current logged-in user
-    fetch(`/api/${userInput}/deck/all`)
-      .then((data) => data.json())
-      .then((data) => {
-        const userDecks = [];
-        for (let i = 0; i < data[0].decks.length; i += 1) {
-          userDecks.push(data[0].decks[i].topic);
-        }
-        this.setState({ decks: userDecks, username: userInput });
-      });
-  }
+    // // get the decks of the current logged-in user
+    // fetch(`/api/${userInput}/deck/all`)
+    //   .then((data) => data.json())
+    //   .then((data) => {
+    //     const userDecks = [];
+    //     for (let i = 0; i < data[0].decks.length; i += 1) {
+    //       userDecks.push(data[0].decks[i].topic);
+    //     }
+    //     this.setState({ decks: userDecks, username: userInput });
+    //   });
+  // }
 
-  deleteDeck(event) {
+  // deleteDeck(event) {
     /*
     fetch(`/api/${this.state.username}/deck/delete`, {
       method: 'DELETE',
@@ -62,7 +74,7 @@ class NavBar extends Component {
         this.setState({ decks: updatedDecks });
       });
       */
-  }
+  // }
 
 
   // addDeck(event) {
@@ -144,6 +156,7 @@ class NavBar extends Component {
     );
   }
 }
+
 
 export default NavBar;
 
