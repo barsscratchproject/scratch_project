@@ -49,7 +49,7 @@ userController.createDeck = function (req, res) {
         console.log(doc);
         return res.status(200).json('user updated!');
       }
-    }
+    },
   );
 };
 
@@ -96,7 +96,7 @@ userController.findDeck = function (req, res, next) {
         console.log(doc[0].decks);
         return res.status(200).json(doc[0].decks);
       }
-    }
+    },
   );
 };
 
@@ -115,13 +115,22 @@ userController.editDeck = function (req, res, next) {
         console.log('successfully edited deck!');
         res.status(200).json(doc);
       }
-    }
+    },
   );
 };
 
 // delete a specific deck
 userController.deleteDeck = function (req, res, next) {
   console.log('deleteDeck invoked!');
+
+  // sanitizing req body
+  if (!req.body.topic) {
+    return next({
+      log: 'ERROR IN userController.deleteDeck; invalid req.body.topic',
+      message: { err: 'Invalid request body, check again' },
+    });
+  }
+
   User.findOneAndUpdate(
     { userName: req.params.user },
     { $pull: { decks: { topic: req.body.topic } } },
@@ -134,7 +143,7 @@ userController.deleteDeck = function (req, res, next) {
         console.log('successfully updated document!');
         return res.status(200).json(doc);
       }
-    }
+    },
   );
 };
 
@@ -166,7 +175,7 @@ userController.createCard = function (req, res) {
         console.log('successfully added card!');
         res.status(200).json(doc);
       }
-    }
+    },
   );
 };
 
@@ -186,7 +195,7 @@ userController.deleteCard = function (req, res) {
         console.log('successfully deleting card!');
         res.status(200).json(doc);
       }
-    }
+    },
   );
 };
 
