@@ -8,13 +8,20 @@ class Dashboard extends Component {
   }
 
   render() {
-    // console.log('DASHBOARD this.props.decks', this.props.decks);
+    console.log('DASHBOARD this.props', this.props);
+    console.log('dashboard addDeck: ', this.props.addDeck)
     return (
       <div>
         <h1 className="welcomeUser">Welcome, {this.props.user}!</h1>
         <DecksContainer
+          user={this.props.user} 
           decks={this.props.decks}
+          editDeck={this.props.editDeck}
           deleteDeck={this.props.deleteDeck}
+          cards={this.props.cards} 
+          addDeck={this.props.addDeck}
+          openForm={this.props.openForm}
+          closeForm={this.props.closeForm}
         />
       </div>
     );

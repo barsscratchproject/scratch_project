@@ -4,30 +4,39 @@ import Dashboard from '../main/Dashboard.jsx';
 import Login from '../main/Login.jsx';
 import Deck from '../main/Deck.jsx';
 import Quiz from '../main/Quiz.jsx';
+import ReactDOM from "react-dom";
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // username: '',
-      // decks: [],
-      username: 'Stacy',
-      decks: ['math', 'physics', 'python', 'polisci', 'redux', 'latin', 'anatomy', 'history', 'chemistry'],
-      mathCards: [
-        {question: 'What is the capital of New York State?', answer: 'Albany'},
-        {question: 'What is the relationship between displacement, time interval and average velocity of an object travelling in uniform motion?', answer: 'When d gets larger and t is constant, the average velocity gets larger. When t gets larger, and d is constant, the average velocity gets smaller. When av gets larger, the slope position of a position time (dt) graph gets steeper.'},
-        {question: '2 + 2', answer: '4'},
-        {question: '2 + 4', answer: '6'},
-        {question: '2 + 6', answer: '8'},
-        {question: '2 + 8', answer: '10'},
-        {question: '2 + 10', answer: '12'}
-      ]
+      username: 'barsTwo',
+      decks: [],
+      allDecksCards: [],
+      // username: 'Stacy',
+      // decks: ['math', 'physics', 'python', 'polisci', 'redux', 'latin', 'anatomy', 'history', 'chemistry'],
+      // mathCards: [
+      //   {question: 'What is the capital of New York State?', answer: 'Albany'},
+      //   {question: 'What is the relationship between displacement, time interval and average velocity of an object travelling in uniform motion?', answer: 'When d gets larger and t is constant, the average velocity gets larger. When t gets larger, and d is constant, the average velocity gets smaller. When av gets larger, the slope position of a position time (dt) graph gets steeper.'},
+      //   {question: '2 + 2', answer: '4'},
+      //   {question: '2 + 4', answer: '6'},
+      //   {question: '2 + 6', answer: '8'},
+      //   {question: '2 + 8', answer: '10'},
+      //   {question: '2 + 10', answer: '12'}
+      // ]
+      mathCards: [],
+      currentTopic: "",
+      currentCards: [],
     };
-  };
 
-    this.userLogin = this.userLogin.bind(this);
+    // this.userLogin = this.userLogin.bind(this);
+    this.addDeck = this.addDeck.bind(this);
+    this.editDeck = this.editDeck.bind(this);
     this.deleteDeck = this.deleteDeck.bind(this);
-  }
+    this.openForm = this.openForm.bind(this);
+    this.closeForm = this.closeForm.bind(this);
+  };
+  // }
 
   /*
   createUser(event) {
@@ -41,7 +50,8 @@ class NavBar extends Component {
   */
 
   // login and get all the decks for the logged-in user
-  // userLogin(event) {
+  /*
+  userLogin(event) {
     // get the username (inputted by user)
     const userInput = document.getElementById('login').value;
     // get the decks of the current logged-in user
@@ -50,11 +60,41 @@ class NavBar extends Component {
       .then((data) => {
         console.log('fetched data: ', data);
         const userDecks = [];
+        const userInventory = [];
         for (let i = 0; i < data[0].decks.length; i += 1) {
           userDecks.push(data[0].decks[i].topic);
+          userInventory.push(data[0].decks[i]);
         }
         console.log('all the decks ', userDecks);
-        this.setState({ decks: userDecks, username: userInput });
+        console.log('all the decks and cards ', userInventory);
+        this.setState({ decks: userDecks, username: userInput, allDecksCards: userInventory});
+      });
+  }
+  */
+
+  // hard-coded user
+  componentDidMount() {
+    // get the decks of the current logged-in user
+    fetch(`/api/barsTwo/deck/all`)
+      .then((data) => data.json())
+      .then((data) => {
+        console.log('fetched data: ', data);
+        const userDecks = [];
+        const userInventory = [];
+        for (let i = 0; i < data[0].decks.length; i += 1) {
+          userDecks.push(data[0].decks[i].topic);
+          userInventory.push(data[0].decks[i]);
+        }
+        console.log('all the decks ', userDecks);
+        console.log('all the decks and cards ', userInventory);
+        // not updating username state since it's hardcoded
+
+
+        // hardcoding the art deck for ryan to work on stuff
+        const tempCards = data[0].decks[0].cards
+        console.log('testing the cards: ', tempCards)
+
+        this.setState({ decks: userDecks, allDecksCards: userInventory, mathCards: tempCards});
       });
   }
 
@@ -70,38 +110,73 @@ class NavBar extends Component {
     })
       .then((data) => data.json())
       .then((data) => {
-        // nonconventional way, need schema for the decks because the message body
         console.log('data after delete: ', data);
+        console.log('data decks after delete: ', data.decks);
         const updatedDecks = [];
-        /*
         for (let i = 0; i < data.decks.length; i += 1) {
-          if (data.decks[i].topic !== selectedTopic) {
             updatedDecks.push(data.decks[i].topic);
-          }
+          
         }
-        */
         console.log('decks after delete: ', updatedDecks);
         this.setState({ decks: updatedDecks });
       });
   }
 
-  // addDeck(event) {
-  //   // edit to add a form where the user can input data
-  // }
+  closeForm(event) {
+    console.log('close this')
+    // document.getElementById("popupForm").style.display = "none";
+  }
 
-  /* EDITDECK MIDDLEWARE HAS NOT BEEN COMPLETED
-  editDeck(event) {
-    // NEED TO UPDATE DECK ON LINE BELOW
-    fetch(`/api/${this.state.username}/${EDIT_THIS}/edit`, {
+  openForm(event) {
+    console.log('open this')
+    // document.getElementById("popupForm").style.display = "block";
+  }
+
+  addDeck(event) {
+    // edit to add a form where the user can input data
+    console.log('ADD DECK BUTTON CLICKED');
+
+    // const selectedTopic = event.target.attributes.topic.nodeValue;
+    console.log('decks before added: ', this.state.decks);
+
+    fetch(`/api/${this.state.username}/createDeck`, {
       method: 'PATCH',
-      body: { "topic": `${EDIT_THIS}` },
+      // need to update "deck" in fetch request based on the ID in line below
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topic: "Hey", cards: {} }),
     })
       .then((data) => data.json())
-      .then((updatedDeck) => {
-        this.setState({ decks: updatedDeck });
+      .then((data) => {
+        console.log('data after add!!!!: ', data);
+        console.log('data decks after add: ', data.decks);
+        const updatedDecks = [];
+        for (let i = 0; i < data.decks.length; i += 1) {
+            updatedDecks.push(data.decks[i].topic);
+        }
+        console.log('decks after add: ', updatedDecks);
+        this.setState({ decks: updatedDecks });
       });
+
   }
-  */
+
+  // EDITDECK MIDDLEWARE HAS NOT BEEN COMPLETED
+  editDeck(event) {
+    console.log('EDIT DECK BUTTON CLICKED');
+    // window.location.href=`/api/barsTwo/deck`
+    // fetch(`/api/barsTwo/deck`)
+    //   .then(res => res.json())
+    //   .catch(err => console.log('EDIT DECK ERROR:', err));
+    // NEED TO UPDATE DECK ON LINE BELOW
+    // fetch(`/api/${this.state.username}/${EDIT_THIS}/edit`, {
+    //   method: 'PATCH',
+    //   body: { "topic": `${EDIT_THIS}` },
+    // })
+    //   .then((data) => data.json())
+    //   .then((updatedDeck) => {
+    //     this.setState({ decks: updatedDeck });
+    //   });
+  }
+  
 
   render() {
     // console.log('NAVBAR this.state.decks', this.state.decks);
@@ -141,14 +216,28 @@ class NavBar extends Component {
         <Switch>
           {/* need to render something for the home route? */}
           <Route path="/" exact>
-            <Deck user={this.state.username} decks={this.state.decks} cards={this.state.mathCards} />
+            <Dashboard 
+              user={this.state.username} 
+              decks={this.state.decks} 
+              editDeck={this.editDeck}
+              deleteDeck={this.deleteDeck}
+              cards={this.state.mathCards} 
+              addDeck={this.addDeck}
+              openForm={this.openForm}
+              closeForm={this.closeForm}
+            />
           </Route>
 
           <Route path="/dashboard" exact>
             <Dashboard
               user={this.state.username}
               decks={this.state.decks}
+              editDeck={this.editDeck}
               deleteDeck={this.deleteDeck}
+              cards={this.state.mathCards} 
+              addDeck={this.addDeck}
+              openForm={this.openForm}
+              closeForm={this.closeForm}
             />
           </Route>
 
@@ -165,6 +254,7 @@ class NavBar extends Component {
               user={this.state.username}
               decks={this.state.decks}
               cards={this.state.mathCards}
+              topic={this.state.currentTopic}
             />
           </Route>
 
@@ -180,6 +270,7 @@ class NavBar extends Component {
       </body>
     );
   }
+}
 
 
 

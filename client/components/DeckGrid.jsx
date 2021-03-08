@@ -9,21 +9,28 @@ class DeckGrid extends Component {
     super(props);
   }
   render() {
+    // console.log('deck grid addDeck: ', this.props.addDeck)
     // console.log('DECK GRID this.props.decks', this.props.decks);
     const decks = [];
     for (let i = 0; i < this.props.decks.length; i++) {
       // const currDeck = this.props.decks[i];
       decks.push(
         <DeckIcon
+          user={this.props.user} 
           key={`Deck${i}`}
           topic={this.props.decks[i]}
+          editDeck={this.props.editDeck}
           deleteDeck={this.props.deleteDeck}
+          cards={this.props.cards} 
+          addDeck={this.props.addDeck}
         />,
       );
     }
     return (
       <div className="deckGrid">
-        <CreateDeck />
+        <CreateDeck addDeck={this.props.addDeck} 
+        openForm={this.props.openForm}
+        closeForm={this.props.closeForm} />
         {decks}
       </div>
     );
@@ -41,3 +48,6 @@ export default DeckGrid;
 //   }
 //   return <div className="displayGrid">Hi from DeckGrid</div>;
 // };
+
+
+
