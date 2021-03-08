@@ -9,26 +9,111 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // decks: [{'topic': 'math'; cards: {}}, {'topic': 'history'}, {'topic': 'health'}]
-      decks: ['math', 'physics', 'python', 'polisci', 'redux', 'latin', 'anatomy', 'history', 'chemistry']
+      username: '',
+      decks: [],
     };
+
+    this.userLogin = this.userLogin.bind(this);
   }
+
+  /*
+  createUser(event) {
+    // need to add the input form somewhere and give it the same id as below
+    const newUser = document.getElementById('newUser').value;
+
+    fetch('/api/user', {
+      method: 'POST',
+      body: {},
+    });
+  }
+  */
+
+  // login and get all the decks for the logged-in user
+  userLogin(event) {
+    // get the username (inputted by user)
+    const userInput = document.getElementById('login').value;
+
+    // get the decks of the current logged-in user
+    fetch(`/api/${userInput}/deck/all`)
+      .then((data) => data.json())
+      .then((data) => {
+        const userDecks = [];
+        for (let i = 0; i < data[0].decks.length; i += 1) {
+          userDecks.push(data[0].decks[i].topic);
+        }
+        this.setState({ decks: userDecks, username: userInput });
+      });
+  }
+
+  deleteDeck(event) {
+    /*
+    fetch(`/api/${this.state.username}/deck/delete`, {
+      method: 'DELETE',
+      // need to update "deck" in fetch request based on the ID in line below
+      body: JSON.stringify({ topic: `${EDIT_THIS}` }),
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        const updatedDecks = [];
+        for (let i = 0; i < data[0].length; i += 1) {
+          updatedDecks.push(data[0][i].topic);
+        }
+
+        this.setState({ decks: updatedDecks });
+      });
+      */
+  }
+
+  // addDeck(event) {
+  //   // edit to add a form where the user can input data
+  // }
+
+  /* EDITDECK MIDDLEWARE HAS NOT BEEN COMPLETED
+  editDeck(event) {
+    // NEED TO UPDATE DECK ON LINE BELOW
+    fetch(`/api/${this.state.username}/${EDIT_THIS}/edit`, {
+      method: 'PATCH',
+      body: { "topic": `${EDIT_THIS}` },
+    })
+      .then((data) => data.json())
+      .then((updatedDeck) => {
+        this.setState({ decks: updatedDeck });
+      });
+  }
+  */
+
   render() {
     console.log('NAVBAR this.state.decks', this.state.decks);
     return (
       <body>
         <nav className="navBar">
-          <Link className="navLinks" to="/dashboard" style={{ textDecoration: 'none' }}>
+          <Link
+            className="navLinks"
+            to="/dashboard"
+            style={{ textDecoration: 'none' }}
+          >
             <p>DASHBOARD</p>{' '}
           </Link>
 
-          <Link className="navLinks" to="/deck" style={{ textDecoration: 'none' }}>
+          <Link
+            className="navLinks"
+            to="/deck"
+            style={{ textDecoration: 'none' }}
+          >
             <p>Deck</p>{' '}
           </Link>
-          <Link className="navLinks" to="/quiz" style={{ textDecoration: 'none' }}>
+          <Link
+            className="navLinks"
+            to="/quiz"
+            style={{ textDecoration: 'none' }}
+          >
             <p>Quiz Me!</p>{' '}
           </Link>
-          <Link className="navLinks" to="/login" style={{ textDecoration: 'none' }}>
+          <Link
+            className="navLinks"
+            to="/login"
+            style={{ textDecoration: 'none' }}
+          >
             <p>LOGOUT</p>{' '}
           </Link>
         </nav>
@@ -39,7 +124,15 @@ class NavBar extends Component {
           </Route>
 
           <Route path="/login">
-            <Login />
+            <Login userLogin={this.userLogin} />
+          </Route>
+
+          <Route path="/deck">
+            <Deck />
+          </Route>
+
+          <Route path="/quiz">
+            <Quiz />
           </Route>
         </Switch>
       </body>
