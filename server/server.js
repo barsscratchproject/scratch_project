@@ -10,6 +10,18 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// flow check
+// comment out cookie parser when using postman
+app.use((req, res, next) => {
+  console.log(`
+  🍒🍒🍒 FLOW METHOD 🍒🍒🍒
+  URL: ${req.url}\n
+  METHOD: ${req.method}\n
+  BODY: ${req.body}\n
+  PARAMS: ${req.params}\n`);
+  return next();
+});
+
 /**
  * serve the bundle file
  */
@@ -41,7 +53,7 @@ app.use((err, req, res, next) => {
     message: { err: 'An error occurred' },
   };
 
-  const errorObj = { ...defaultErr, ...err };
+  const errorObj = Object.assign(defaultErr, err);
   console.log('ERROR: ', errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
