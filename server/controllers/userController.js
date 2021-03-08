@@ -53,6 +53,11 @@ userController.createDeck = function (req, res) {
   );
 };
 
+// create card -
+// find all cards -
+// find specific card <--- maybe
+// edit a specific card
+// delete specific card
 // return just decks - X
 // Find topic passed into params - X
 // find specific topic in specific user deck - X
@@ -60,12 +65,6 @@ userController.createDeck = function (req, res) {
 // delete deck - X
 // make sure new deck is created with cards object - X
 // edit deck -
-
-// create card
-// find all cards
-// find specific card <--- maybe
-// edit a specific card
-// delete specific card
 
 // find all the decks
 userController.findAllDecks = function (req, res, next) {
@@ -101,29 +100,32 @@ userController.findDeck = function (req, res, next) {
   );
 };
 
-// Under construction
-userController.editDeck = function (req, res) {
-  User.findOneAndUpdate(
-    { userName: req.params.user },
-    { $pull: { decks: { topic: req.body.topic } } },
+// edit a specific deck
+userController.editDeck = function (req, res, next) {
+  console.log('editDeck invoked!');
+  User.updateOne(
+    { userName: req.params.user, 'decks.topic': req.body.topic },
+    { $set: { 'decks.$.topic': req.body.newTopic } },
+    { new: true },
     (err, doc) => {
       if (err) {
-        console.log('Error updating document!');
-        return res.status(400).json(err);
+        console.log('error editing deck!');
+        res.status(400).json(err);
       } else {
-        console.log('successfully updated document!');
-        return res.status(200).json(doc);
+        console.log('successfully edited deck!');
+        res.status(200).json(doc);
       }
     }
   );
 };
 
-// deletes specific deck
+// delete a specific deck
 userController.deleteDeck = function (req, res, next) {
   console.log('deleteDeck invoked!');
   User.findOneAndUpdate(
     { userName: req.params.user },
     { $pull: { decks: { topic: req.body.topic } } },
+    { new: true },
     (err, doc) => {
       if (err) {
         console.log('Error updating document!');
@@ -136,22 +138,56 @@ userController.deleteDeck = function (req, res, next) {
   );
 };
 
-// userController.deleteDeck = function (req, res, next) {
-//   console.log('deleteDeck invoked!');
-//   User.findOneAndUpdate(
-//     {
-//       update: { $pull: { decks: { topic: 'history' } } },
-//     },
-//     (err, doc) => {
-//       if (err) {
-//         console.log('Error updating document!');
-//         return res.status(400).json(err);
-//       } else {
-//         console.log('successfully updated document!');
-//         return res.status(200).json(doc);
-//       }
-//     }
-//   );
-// };
+// create card - X
+// find all cards -
+// find specific card
+// edit a specific card
+// delete specific card
+
+// create a card
+userController.createCard = function (req, res) {
+  console.log('createCard invoked!');
+  User.updateOne(
+    { userName: req.params.user, 'decks.topic': req.body.topic },
+    {
+      $push: {
+        'decks.$.cards': {
+          id: Number(req.body.id),
+          question: req.body.question,
+          answer: req.body.answer,
+        },
+      },
+    },
+    (err, doc) => {
+      if (err) {
+        console.log('error adding card!');
+        res.status(400).json(err);
+      } else {
+        console.log('successfully added card!');
+        res.status(200).json(doc);
+      }
+    }
+  );
+};
+
+userController.deleteCard = function (req, res) {
+  User.findOneAndUpdate(
+    {
+      userName: req.params.user,
+      'decks.topic': req.body.topic,
+    },
+    { $pull: { 'decks.$.cards': { id: Number(req.body.id) } } },
+    { new: true },
+    (err, doc) => {
+      if (err) {
+        console.log('error deleting card!');
+        res.status(400).json(err);
+      } else {
+        console.log('successfully deleting card!');
+        res.status(200).json(doc);
+      }
+    }
+  );
+};
 
 module.exports = userController;
