@@ -1,5 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const QuizCard = () => <div class="container">Hi from QuizCard</div>;
+class QuizCard extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div className="interactiveFlashCard">
+        <p>THIS IS A FLASHCARD!!!!!!!!!</p>
+      </div>
+    );
+  }
+}
 
 export default QuizCard;

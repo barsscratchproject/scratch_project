@@ -11,7 +11,7 @@ class Dashboard extends Component {
     console.log('DASHBOARD this.props.decks', this.props.decks);
     return (
       <div>
-        <h1 className="welcomeUser">Welcome, User!</h1>
+        <h1 className="welcomeUser">Welcome, {this.props.user}!</h1>
         <DecksContainer decks={this.props.decks} />
       </div>
     );
