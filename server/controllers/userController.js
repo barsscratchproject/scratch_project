@@ -39,7 +39,7 @@ userController.deleteUser = function (req, res, next) {
 userController.createDeck = function (req, res) {
   User.updateOne(
     { userName: req.params.user },
-    { $push: { decks: { topic: req.body.topic, cards: {} } }},
+    { $push: { decks: { topic: req.body.topic, cards: {} } } },
     (err, doc) => {
       if (err) {
         console.log('error adding deck!');
@@ -53,17 +53,16 @@ userController.createDeck = function (req, res) {
   );
 };
 
-
-
 // return just decks - X
 // Find topic passed into params - X
 // find specific topic in specific user deck - X
 // find all decks - X
-// delete deck - 
-// edit deck - 
+// delete deck -
+// make sure new deck is created with cards object
+// edit deck -
 
-// create card 
-// find all cards 
+// create card
+// find all cards
 // find specific card <--- maybe
 // edit a specific card
 // delete specific card
@@ -86,34 +85,58 @@ userController.findAllDecks = function (req, res, next) {
 // find a specific deck
 userController.findDeck = function (req, res, next) {
   console.log('findDeck invoked!');
-  User.find({ userName: req.params.user, 'decks.topic': req.params.deck }, {'decks.$': 1 }, (err, doc) => {
-    if (err) {
-      console.log('error finding deck!');
-      return res.status(400).json(err);
-    } else {
-      console.log('found deck!');
-      console.log(doc[0].decks);
-      return res.status(200).json(doc[0].decks);
+  User.find(
+    { userName: req.params.user, 'decks.topic': req.params.deck },
+    { 'decks.$': 1 },
+    (err, doc) => {
+      if (err) {
+        console.log('error finding deck!');
+        return res.status(400).json(err);
+      } else {
+        console.log('found deck!');
+        console.log(doc[0].decks);
+        return res.status(200).json(doc[0].decks);
+      }
     }
-  });
+  );
 };
 
-// delete a specific deck  // not completed yet!
+// Deletes specific deck
+// pass user in through params
+// pass deck topic in through body (through url params causes issue with spacing)
 userController.deleteDeck = function (req, res, next) {
   console.log('deleteDeck invoked!');
-  User.updateOne( { userName: req.params.user }, { $pull: { decks: { 'decks.topic': req.params.deck } }}, (err, doc) => {
-    if (err) {
-      console.log('error deleting deck!');
-      return res.status(400).json(err);
-    } else {
-      console.log('deleted deck!');
-      console.log(doc);
-      return res.status(200).json(doc);
+  User.findOneAndUpdate(
+    { userName: req.params.user },
+    { $pull: { decks: { topic: req.body.topic } } },
+    (err, doc) => {
+      if (err) {
+        console.log('Error updating document!');
+        return res.status(400).json(err);
+      } else {
+        console.log('successfully updated document!');
+        return res.status(200).json(doc);
+      }
     }
-  });
+  );
 };
 
-
-
+// userController.deleteDeck = function (req, res, next) {
+//   console.log('deleteDeck invoked!');
+//   User.findOneAndUpdate(
+//     {
+//       update: { $pull: { decks: { topic: 'history' } } },
+//     },
+//     (err, doc) => {
+//       if (err) {
+//         console.log('Error updating document!');
+//         return res.status(400).json(err);
+//       } else {
+//         console.log('successfully updated document!');
+//         return res.status(200).json(doc);
+//       }
+//     }
+//   );
+// };
 
 module.exports = userController;

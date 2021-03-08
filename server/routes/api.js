@@ -11,8 +11,7 @@ router.get('/:user/deck/:deck', userController.findDeck);
 // ...creates new deck for existing user (:user)
 router.patch('/:user/createDeck/', userController.createDeck);
 // ...deletes deck (:deck) for existing user (:user)
-router.delete('/:user/deck/:deck', userController.deleteDeck);
-
+router.delete('/:user/deck/delete', userController.deleteDeck);
 
 // User...
 // ...finds existing user
@@ -37,7 +36,5 @@ router.post('/user', userController.createUser);
 // find specific card <--- maybe
 // edit a specific card
 // delete specific card
-
-
 
 module.exports = router;
