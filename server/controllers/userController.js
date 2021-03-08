@@ -64,7 +64,7 @@ userController.createDeck = function (req, res) {
 // find all decks - X
 // delete deck - X
 // make sure new deck is created with cards object - X
-// edit deck -
+// edit deck - X
 
 // find all the decks
 userController.findAllDecks = function (req, res, next) {
@@ -137,12 +137,6 @@ userController.deleteDeck = function (req, res, next) {
     }
   );
 };
-
-// create card - X
-// find all cards -
-// find specific card
-// edit a specific card
-// delete specific card
 
 // create a card
 userController.createCard = function (req, res) {
