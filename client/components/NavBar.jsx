@@ -64,6 +64,7 @@ class NavBar extends Component {
       */
   }
 
+
   // addDeck(event) {
   //   // edit to add a form where the user can input data
   // }
@@ -81,6 +82,9 @@ class NavBar extends Component {
       });
   }
   */
+
+
+  
 
   render() {
     console.log('NAVBAR this.state.decks', this.state.decks);
@@ -120,19 +124,20 @@ class NavBar extends Component {
         <Switch>
           {/* need to render something for the home route? */}
           <Route path="/dashboard" exact>
-            <Dashboard decks={this.state.decks} />
-          </Route>
-
-          <Route path="/login">
-            <Login userLogin={this.userLogin} />
+            <Dashboard user={this.state.userName} decks={this.state.decks} />
           </Route>
 
           <Route path="/deck">
-            <Deck />
+            <Deck user={this.state.userName} decks={this.state.decks} cards={this.state.mathCards} />
           </Route>
 
           <Route path="/quiz">
-            <Quiz />
+            <Quiz user={this.state.userName} decks={this.state.decks} cards={this.state.mathCards} />
+          </Route>
+
+          <Route path="/login">
+            <Login userLogin={this.userLogin} user={this.state.userName} decks={this.state.decks} cards={this.state.mathCards} />
+
           </Route>
         </Switch>
       </body>
