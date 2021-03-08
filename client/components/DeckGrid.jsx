@@ -17,6 +17,7 @@ class DeckGrid extends Component {
     }
     return (
       <div className="deckGrid">
+        <CreateDeck />
         {decks}
       </div>
     );

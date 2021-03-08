@@ -18,19 +18,18 @@ class NavBar extends Component {
     return (
       <body>
         <nav className="navBar">
-          <Link to="/dashboard" style={{ textDecoration: 'none' }}>
-            <p className="logo">HOME/LOGO/DASHBOARD</p>{' '}
+          <Link className="navLinks" to="/dashboard" style={{ textDecoration: 'none' }}>
+            <p>DASHBOARD</p>{' '}
           </Link>
 
-          <Link to="/login" style={{ textDecoration: 'none' }}>
-            <p className="navLinks">Login</p>{' '}
+          <Link className="navLinks" to="/deck" style={{ textDecoration: 'none' }}>
+            <p>Deck</p>{' '}
           </Link>
-
-          <Link to="/deck" style={{ textDecoration: 'none' }}>
-            <p className="navLinks">Deck</p>{' '}
+          <Link className="navLinks" to="/quiz" style={{ textDecoration: 'none' }}>
+            <p>Quiz Me!</p>{' '}
           </Link>
-          <Link to="/quiz" style={{ textDecoration: 'none' }}>
-            <p className="navLinks">Quiz Me!</p>{' '}
+          <Link className="navLinks" to="/login" style={{ textDecoration: 'none' }}>
+            <p>LOGOUT</p>{' '}
           </Link>
         </nav>
         <Switch>
