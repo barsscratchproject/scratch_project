@@ -15,17 +15,18 @@ router.patch('/:user/createDeck', userController.createDeck);
 // ...deletes deck (:deck) for existing user (:user)
 router.delete('/:user/deck/delete', userController.deleteDeck);
 
+// Cards...
+// ...creates card in a deck (:deck) specified by the user (:user)
+router.post('/:user/createCard', userController.createCard);
+// router.post('/cards/:user/:deck', userController.createCard);
+// ...returns all cards from deck (:deck)
+// Note: we may need an identifier for each card
+
 // User...
 // ...finds existing user
 router.get('/user/:user', userController.findUser);
 // ...creates user
 router.post('/user', userController.createUser);
-
-// Cards...
-// ...creates card in a deck (:deck) specified by the user (:user)
-// router.post('/cards/:user/:deck', userController.createCard);
-// ...returns all cards from deck (:deck)
-// Note: we may need an identifier for each card
 
 // create deck X
 // find all decks

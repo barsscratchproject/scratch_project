@@ -61,12 +61,6 @@ userController.createDeck = function (req, res) {
 // make sure new deck is created with cards object - X
 // edit deck -
 
-// create card -
-// find all cards -
-// find specific card <--- maybe
-// edit a specific card
-// delete specific card
-
 // find all the decks
 userController.findAllDecks = function (req, res, next) {
   console.log('findAllDecks invoked!');
@@ -96,6 +90,54 @@ userController.findDeck = function (req, res, next) {
         console.log('found deck!');
         console.log(doc[0].decks);
         return res.status(200).json(doc[0].decks);
+      }
+    }
+  );
+};
+
+userController.deleteDeck = function (req, res, next) {
+  console.log('deleteDeck invoked!');
+  User.findOneAndUpdate(
+    { userName: req.params.user },
+    { $pull: { decks: { topic: req.body.topic } } },
+    (err, doc) => {
+      if (err) {
+        console.log('Error updating document!');
+        return res.status(400).json(err);
+      } else {
+        console.log('successfully updated document!');
+        return res.status(200).json(doc);
+      }
+    }
+  );
+};
+
+// create card -
+// find all cards -
+// find specific card <--- maybe
+// edit a specific card
+// delete specific card
+
+// create card
+userController.createCard = function (req, res) {
+  console.log('createCard invoked!');
+  User.updateOne(
+    { userName: 'john', 'decks.topic': 'literature' },
+    {
+      $push: {
+        'decks.$.cards': {
+          question: 'that is the question',
+          answer: 'to be, or not to be',
+        },
+      },
+    },
+    (err, doc) => {
+      if (err) {
+        console.log('error adding card!');
+        res.status(400).json(err);
+      } else {
+        console.log('successfully added card!');
+        res.status(200).json(doc);
       }
     }
   );
@@ -138,21 +180,5 @@ userController.findDeck = function (req, res, next) {
 // };
 
 // deletes specific deck
-userController.deleteDeck = function (req, res, next) {
-  console.log('deleteDeck invoked!');
-  User.findOneAndUpdate(
-    { userName: req.params.user },
-    { $pull: { decks: { topic: req.body.topic } } },
-    (err, doc) => {
-      if (err) {
-        console.log('Error updating document!');
-        return res.status(400).json(err);
-      } else {
-        console.log('successfully updated document!');
-        return res.status(200).json(doc);
-      }
-    }
-  );
-};
 
 module.exports = userController;
