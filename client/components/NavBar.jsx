@@ -124,19 +124,19 @@ class NavBar extends Component {
         <Switch>
           {/* need to render something for the home route? */}
           <Route path="/dashboard" exact>
-            <Dashboard user={this.state.userName} decks={this.state.decks} />
+            <Dashboard user={this.state.username} decks={this.state.decks} />
           </Route>
 
           <Route path="/deck">
-            <Deck user={this.state.userName} decks={this.state.decks} cards={this.state.mathCards} />
+            <Deck user={this.state.username} decks={this.state.decks} cards={this.state.mathCards} />
           </Route>
 
           <Route path="/quiz">
-            <Quiz user={this.state.userName} decks={this.state.decks} cards={this.state.mathCards} />
+            <Quiz user={this.state.username} decks={this.state.decks} cards={this.state.mathCards} />
           </Route>
 
           <Route path="/login">
-            <Login userLogin={this.userLogin} user={this.state.userName} decks={this.state.decks} cards={this.state.mathCards} />
+            <Login userLogin={this.userLogin} user={this.state.username} decks={this.state.decks} cards={this.state.mathCards} />
 
           </Route>
         </Switch>
