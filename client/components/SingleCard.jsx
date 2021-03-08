@@ -12,6 +12,10 @@ class SingleCard extends Component {
           <div className="divider"></div>
           <h1 className="singleAnswer">{this.props.answer}</h1>
         </div>
+        <div className="deckEditButtons">
+          <button className="deckEditButton">Edit</button>
+          <button className="deckDeleteButton">Delete</button>
+        </div>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 body {
-  /* background-color: rgb(169, 188, 208); */
+  /* background-color: rgb(194, 200, 255); */
+  background-color: rgb(237, 237, 243);
   width: 100%;
   margin: 0px 0px;
   padding: 0px 0px;
@@ -10,16 +11,15 @@ body {
   filter: brightness(75%);
 } */
 
+/* NAVBAR (state storage) /*
 /* Navbar styling; appears on the top of every page */
 .navBar {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  background-color: rgb(179, 203, 228);
+  background-color: rgb(237, 237, 243);
   /* border: 1px solid greenyellow; */
-  /* background-color: rgb(88, 164, 176); */
-  /* color: rgb(216, 219, 226); */
   width: 100%;
   height: 100px;
   font-size: 30px;
@@ -27,21 +27,29 @@ body {
 
 /* unvisited navbar link */
 .navLinks:link {
-  color: rgb(0, 26, 255);
+  /* color: rgb(94, 109, 243); */
+  color: rgb(71, 88, 240);
+  /* background-color: red; */
+  border-radius: 5px;
 }
 
 /* visited navbar link */
 .navLinks:visited {
-  color: rgb(0, 26, 255);
+  /* color: rgb(94, 109, 243); */
+  color: rgb(71, 88, 240);
+  /* background-color: red; */
+  border-radius: 5px;
 }
 
 /* mouse over navbar link */
 .navLinks:hover {
+  /* background-color: rgb(215, 219, 255); */
   color: red;
 }
 
 /* selected navbar link */
 .navLinks:active {
+  /* background-color: rgb(215, 219, 255); */
   color: red;
 }
 
@@ -52,7 +60,7 @@ body {
   justify-content: center;
   background-image:
   linear-gradient(180deg, white 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
-  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, #DDD 1px, #DDD calc(1.5rem + 1px));
+  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, rgb(215, 219, 255) 1px, rgb(215, 219, 255) calc(1.5rem + 1px));
   box-shadow: 1px 1px 3px rgba(0,0,0,.25);
   height: 40px;
   width: 80px;
@@ -62,13 +70,16 @@ body {
   transform: translateY(-50%);
 }
 
+
+/* DASHBOARD PAGE /*
 /* 
 Header at top of dashboard page, BEFORE/ABOVE deckscontainer display
 displays the text "Welcome, User!" 
 */
 .welcomeUser {
-  color: rgb(27, 27, 30);
-  margin-top: 70px;
+  color: rgb(36, 42, 95);
+  /* margin-top: 20px; */
+  margin-bottom: 60px;
   font-size: 50px;
   display: flex;
   justify-content: center;
@@ -103,7 +114,9 @@ displays the text "Welcome, User!"
 .singleDeckIcon {
   background-image:
   linear-gradient(180deg, white 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
-  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, #DDD 1px, #DDD calc(1.5rem + 1px));
+  /* repeating-linear-gradient(0deg, transparent, transparent 1.5rem, #DDD 1px, #DDD calc(1.5rem + 1px)); */
+  /* repeating-linear-gradient(0deg, transparent, transparent 1.5rem, rgb(215, 219, 255) 1px, rgb(215, 219, 255) calc(1.5rem + 1px)); */
+  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, rgb(215, 219, 255) 1px, rgb(159, 168, 255) calc(1.5rem + 1px));
   box-shadow: 1px 1px 3px rgba(0,0,0,.25);
   height: 10rem;
   width: 250px;
@@ -120,14 +133,10 @@ displays the text "Welcome, User!"
 /* Dashboard page single deck h1 TOPIC header */
 .oneDeck {
   display: flex;
-  /* align-items: center; */
   justify-content: center;
-  /* color: rgb(214, 43, 71); */
-  color:rgb(230, 4, 4);
+  color: rgb(230, 34, 2);
 }
 
-
-/* E D I T */
 /* Dashboard page single deck edit buttons CONTAINER */
 .editBtnContainer {
   display: flex;
@@ -148,7 +157,7 @@ displays the text "Welcome, User!"
 
 .singleDeckEditBtn:hover {
   cursor: pointer;
-  background-color: red;
+  background-color: rgb(230, 34, 2);
   color: white;
   /* background-color: F0A4A4; */
 }
@@ -164,7 +173,7 @@ displays the text "Welcome, User!"
 
 .singleDeckDeleteBtn:hover {
   cursor: pointer;
-  background-color: red;
+  background-color: rgb(230, 34, 2);
   color: white;
   /* background-color: F0A4A4; */
 }
@@ -176,7 +185,7 @@ displays the text "Welcome, User!"
   justify-content: center;
   background-image:
   linear-gradient(180deg, white 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
-  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, #DDD 1px, #DDD calc(1.5rem + 1px));
+  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, rgb(159, 168, 255) 1px, rgb(159, 168, 255) calc(1.5rem + 1px));
   box-shadow: 1px 1px 3px rgba(0,0,0,.25);
   height: 10rem;
   width: 250px;
@@ -186,6 +195,7 @@ displays the text "Welcome, User!"
   transform: translateY(-50%);
 }
 
+/* Dashboard "add a new deck" button/text */
 .addDeckButton {
   background-color: transparent;
   font-size: 20px;
@@ -195,21 +205,23 @@ displays the text "Welcome, User!"
   align-items: center;
   justify-content: center;
   border: none;
-  color: red;
+  color: rgb(230, 34, 2);
 }
 
-/* .addNewDeckText {
-  font-size: 50px;
-  color: red;
-} */
 
 
 /* EDIT PAGE*/
 /* entire edit container*/
 .editContainer {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  width: 99%;
   /* align-items: center; */
   /* background: rgb(245, 187, 187); */
 }
@@ -224,51 +236,114 @@ displays the text "Welcome, User!"
 
 /* "[User]'s [topic] deck" header */
 .userDeckGreeting {
-  color:rgb(0, 26, 255);
+  color: rgb(36, 42, 95);
+  margin-bottom: 60px;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
 }
 
 .editSection {
-  border: 1px solid black;
-  /* background-color: red; */
+  /* border: 1px solid black; */
+  background-color: white;
+  width: 90%;
+  padding: 20px 0px 50px 0px;
+  margin-bottom: 30px;
 }
 /* container for a single card on the edit page*/
 .editSingleCard {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   padding: 10px 0px 10px 0px;
 }
 
 /* question/answer column header container */
 .questionAnswerHeaders {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   color: black;
+  /* background-color: orange; */
+  width: 90%;
 }
+
+/* divider between Q and A headers */
+/* .headerDivider {
+  border-left:1px solid rgb(230, 34, 2);
+  border-right:1px solid rgb(230, 34, 2);
+  height: 30px;
+  position: absolute;
+} */
 
 /* question/answer container for individual flashcard */
 .questionAnswer {
   font-size: 9px;
-  width: 100%;
-  border: 1px solid red;
+  width: 90%;
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-evenly;
   align-items: center;
-  background-color: rgb(184, 184, 250);
-  padding: 20px 0px 20px 0px;
+  padding: 30px 0px 30px 0px;
+  border: 1px dotted red;
 }
 
 /* divider between any given question and answer */
 .divider {
-  /* border-left:1px solid #38546d; 
-  border-right:1px solid #16222c;  */
-  border-left:1px solid red; 
-  border-right:1px solid red; 
+  border-left:1px solid rgb(230, 34, 2);
+  border-right:1px solid rgb(230, 34, 2);
   height:50px;
-  position:absolute;
-  /* right:249px; */
-  /* top:10px;  */
+  position: absolute;
 }
+
+/* Edit page single card edit/delete buttons container */
+.deckEditButtons {
+  /* background-color: orange; */
+}
+
+/* Edit page single card delete button next to each entry */
+.deckEditButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(238, 238, 238);
+  color: rgb(68, 68, 68);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  height: 25px;
+  margin: 5px 0px 5px 0px;
+}
+
+/* Edit page single card delete button next to each entry */
+.deckEditButton:hover {
+  cursor: pointer;
+  background-color: rgb(230, 34, 2);
+  color: white;
+}
+
+
+/* Edit page single card delete button next to each entry */
+.deckDeleteButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(238, 238, 238);
+  color: rgb(68, 68, 68);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  height: 25px;
+  margin: 5px 0px 5px 0px;
+}
+
+/* HOVER: Edit page single card delete button next to each entry */
+.deckDeleteButton:hover {
+  cursor: pointer;
+  background-color: rgb(230, 34, 2);
+  color: white;
+}
+
+
+
 
 /* test of a single question on edit page */
 .singleQuestion {
@@ -288,4 +363,54 @@ displays the text "Welcome, User!"
   /* border: 1px solid orange; */
   /* color: green; */
   /* border-left: 1px solid blue; */
+}
+
+
+/* QUIZ PAGE */
+/* Full page container (stored in Quiz.jsx parent file) */
+.quizContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+/* Full page container */
+.flashcardContainer {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* background-color: red; */
+  /* border: 1px solid blue; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image:
+  linear-gradient(180deg, white 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
+  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, #DDD 1px, #DDD calc(1.5rem + 1px));
+  box-shadow: 1px 1px 3px rgba(0,0,0,.25);
+  height: 14rem;
+  width: 500px;
+  margin: 150px auto auto auto;
+  /* margin: auto; */
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Single flashcard container */
+.singleFlashcard {
+  display: flex;
+  /* background-color:rgb(0, 26, 255); */
+  /* border: 1px solid red; */
+}
+
+/* Single flashcard question */
+.flashcardQuestion {
+  /* background-color: purple; */
+}
+
+/* Single flashcard answer */
+.flashcardAnswer {
+  /* background-color: orange; */
 }

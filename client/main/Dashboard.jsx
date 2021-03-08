@@ -8,11 +8,14 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log('DASHBOARD this.props.decks', this.props.decks);
+    // console.log('DASHBOARD this.props.decks', this.props.decks);
     return (
       <div>
         <h1 className="welcomeUser">Welcome, {this.props.user}!</h1>
-        <DecksContainer decks={this.props.decks} />
+        <DecksContainer
+          decks={this.props.decks}
+          deleteDeck={this.props.deleteDeck}
+        />
       </div>
     );
   }
