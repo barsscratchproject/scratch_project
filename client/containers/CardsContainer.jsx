@@ -32,6 +32,7 @@ class CardsContainer extends Component {
         <div className="editSection">
           <div className="questionAnswerHeaders">
             <h1>Qs</h1>
+            {/* <div className="headerDivider"></div> */}
             <h1>As</h1>
           </div>
           {cards}

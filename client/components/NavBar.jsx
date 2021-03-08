@@ -9,9 +9,21 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      decks: [],
+      // username: '',
+      // decks: [],
+      username: 'Stacy',
+      decks: ['math', 'physics', 'python', 'polisci', 'redux', 'latin', 'anatomy', 'history', 'chemistry'],
+      mathCards: [
+        {question: 'What is the capital of New York State?', answer: 'Albany'},
+        {question: 'What is the relationship between displacement, time interval and average velocity of an object travelling in uniform motion?', answer: 'When d gets larger and t is constant, the average velocity gets larger. When t gets larger, and d is constant, the average velocity gets smaller. When av gets larger, the slope position of a position time (dt) graph gets steeper.'},
+        {question: '2 + 2', answer: '4'},
+        {question: '2 + 4', answer: '6'},
+        {question: '2 + 6', answer: '8'},
+        {question: '2 + 8', answer: '10'},
+        {question: '2 + 10', answer: '12'}
+      ]
     };
+  };
 
     this.userLogin = this.userLogin.bind(this);
     this.deleteDeck = this.deleteDeck.bind(this);
@@ -29,7 +41,7 @@ class NavBar extends Component {
   */
 
   // login and get all the decks for the logged-in user
-  userLogin(event) {
+  // userLogin(event) {
     // get the username (inputted by user)
     const userInput = document.getElementById('login').value;
     // get the decks of the current logged-in user
@@ -128,6 +140,10 @@ class NavBar extends Component {
         </nav>
         <Switch>
           {/* need to render something for the home route? */}
+          <Route path="/" exact>
+            <Deck user={this.state.username} decks={this.state.decks} cards={this.state.mathCards} />
+          </Route>
+
           <Route path="/dashboard" exact>
             <Dashboard
               user={this.state.username}
@@ -164,36 +180,7 @@ class NavBar extends Component {
       </body>
     );
   }
-}
+
+
 
 export default NavBar;
-
-// const NavBar = () => (
-//   <body>
-//     <nav className="navBar">
-//       <Link to="/" style={{ textDecoration: 'none' }}>
-//         <p className="navLinks">HOME/LOGO</p>{' '}
-//       </Link>
-//       <Link to="/login" style={{ textDecoration: 'none' }}>
-//         <p className="navLinks">Login</p>{' '}
-//       </Link>
-//       <Link to="/dashboard" style={{ textDecoration: 'none' }}>
-//         <p className="navLinks">Dashboard</p>{' '}
-//       </Link>
-//       <Link to="/deck" style={{ textDecoration: 'none' }}>
-//         <p className="navLinks">Deck</p>{' '}
-//       </Link>
-//       <Link to="/quiz" style={{ textDecoration: 'none' }}>
-//         <p className="navLinks">Quiz Me!</p>{' '}
-//       </Link>
-//     </nav>
-//     <Switch>
-//       {/* need to render something for the home route? */}
-//       <Route path="/" exact />
-//       <Route path="/login" component={Login} exact />
-//       <Route path="/dashboard" component={Dashboard} />
-//       <Route path="/deck" component={Deck} />
-//       <Route path="/quiz" component={Quiz} />
-//     </Switch>
-//   </body>
-// );
