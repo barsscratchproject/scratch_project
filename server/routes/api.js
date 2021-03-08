@@ -17,10 +17,11 @@ router.delete('/:user/deck/delete', userController.deleteDeck);
 
 // Cards...
 // ...creates card in a deck (:deck) specified by the user (:user)
-// router.post('/:user/createCard', userController.createCard);
+router.post('/:user/createCard', userController.createCard);
 // router.post('/cards/:user/:deck', userController.createCard);
 // ...returns all cards from deck (:deck)
-// Note: we may need an identifier for each card
+// ...deletes specific card from deck
+router.delete('/:user/deleteCard', userController.deleteCard);
 
 // User...
 // ...finds existing user

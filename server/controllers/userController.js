@@ -104,8 +104,9 @@ userController.findDeck = function (req, res, next) {
 userController.editDeck = function (req, res, next) {
   console.log('editDeck invoked!');
   User.updateOne(
-    { userName: 'john', 'decks.topic': 'express' },
-    { $set: { 'decks.$.topic': 'react' } },
+    { userName: req.params.user, 'decks.topic': req.body.topic },
+    { $set: { 'decks.$.topic': req.body.newTopic } },
+    { new: true },
     (err, doc) => {
       if (err) {
         console.log('error editing deck!');
@@ -139,7 +140,7 @@ userController.deleteDeck = function (req, res, next) {
 
 // create card - X
 // find all cards -
-// find specific card <--- maybe
+// find specific card
 // edit a specific card
 // delete specific card
 
@@ -151,7 +152,7 @@ userController.createCard = function (req, res) {
     {
       $push: {
         'decks.$.cards': {
-          id: req.params.user + req.body.topic,
+          id: Number(req.body.id),
           question: req.body.question,
           answer: req.body.answer,
         },
@@ -169,40 +170,24 @@ userController.createCard = function (req, res) {
   );
 };
 
-// Under construction
-
-// $rename
-// userController.editDeck = function (req, res, next) {
-//   console.log('editDeck invoked!');
-//   User.updateOne(
-//     { userName: req.params.user },
-//     { $rename: { 'physics': 'law' } },
-//     (err, doc) => {
-//       if (err) {
-//         console.log('error editing deck!');
-//         return res.status(400).json(err);
-//       } else {
-//         console.log('deck was edited!');
-//         console.log(doc[0].decks);
-//         return res.status(200).json(doc[0].decks);
-//       }
-//     }
-//   );
-// };
-// userController.editDeck = function (req, res) {
-//   User.findOneAndUpdate(
-//     { userName: req.params.user },
-//     { $set: { decks: { topic: req.body.topic } } },
-//     (err, doc) => {
-//       if (err) {
-//         console.log('Error updating document!');
-//         return res.status(400).json(err);
-//       } else {
-//         console.log('successfully updated document!');
-//         return res.status(200).json(doc);
-//       }
-//     }
-//   );
-// };
+userController.deleteCard = function (req, res) {
+  User.findOneAndUpdate(
+    {
+      userName: req.params.user,
+      'decks.topic': req.body.topic,
+    },
+    { $pull: { 'decks.$.cards': { id: Number(req.body.id) } } },
+    { new: true },
+    (err, doc) => {
+      if (err) {
+        console.log('error deleting card!');
+        res.status(400).json(err);
+      } else {
+        console.log('successfully deleting card!');
+        res.status(200).json(doc);
+      }
+    }
+  );
+};
 
 module.exports = userController;
