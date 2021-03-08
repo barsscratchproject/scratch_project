@@ -6,10 +6,12 @@ const router = express.Router();
 // Decks...
 // ...finds all decks for user (:user)
 router.get('/:user/deck/all', userController.findAllDecks);
-// ...finds existing deck for user (:user)
-router.get('/:user/deck/:deck', userController.findDeck);
+// ...finds specific deck (:deck) for user (:user)
+router.get('/:user/deck/', userController.findDeck);
 // ...creates new deck for existing user (:user)
-router.patch('/:user/createDeck/', userController.createDeck);
+router.patch('/:user/createDeck', userController.createDeck);
+// ...edits specific deck (:deck) for existing user (:user)
+router.patch('/:user/deck/:deck/edit', userController.editDeck);
 // ...deletes deck (:deck) for existing user (:user)
 router.delete('/:user/deck/delete', userController.deleteDeck);
 

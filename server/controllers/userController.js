@@ -57,8 +57,8 @@ userController.createDeck = function (req, res) {
 // Find topic passed into params - X
 // find specific topic in specific user deck - X
 // find all decks - X
-// delete deck -
-// make sure new deck is created with cards object
+// delete deck - X
+// make sure new deck is created with cards object - X
 // edit deck -
 
 // create card
@@ -86,7 +86,7 @@ userController.findAllDecks = function (req, res, next) {
 userController.findDeck = function (req, res, next) {
   console.log('findDeck invoked!');
   User.find(
-    { userName: req.params.user, 'decks.topic': req.params.deck },
+    { userName: req.params.user, 'decks.topic': req.body.topic },
     { 'decks.$': 1 },
     (err, doc) => {
       if (err) {
@@ -101,9 +101,24 @@ userController.findDeck = function (req, res, next) {
   );
 };
 
-// Deletes specific deck
-// pass user in through params
-// pass deck topic in through body (through url params causes issue with spacing)
+// Under construction
+userController.editDeck = function (req, res) {
+  User.findOneAndUpdate(
+    { userName: req.params.user },
+    { $pull: { decks: { topic: req.body.topic } } },
+    (err, doc) => {
+      if (err) {
+        console.log('Error updating document!');
+        return res.status(400).json(err);
+      } else {
+        console.log('successfully updated document!');
+        return res.status(200).json(doc);
+      }
+    }
+  );
+};
+
+// deletes specific deck
 userController.deleteDeck = function (req, res, next) {
   console.log('deleteDeck invoked!');
   User.findOneAndUpdate(
