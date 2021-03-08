@@ -11,7 +11,7 @@ router.get('/:user/deck/', userController.findDeck);
 // ...creates new deck for existing user (:user)
 router.patch('/:user/createDeck', userController.createDeck);
 // ...edits specific deck (:deck) for existing user (:user)
-router.patch('/:user/deck/:deck/edit', userController.editDeck);
+// router.patch('/:user/deck/edit', userController.editDeck);
 // ...deletes deck (:deck) for existing user (:user)
 router.delete('/:user/deck/delete', userController.deleteDeck);
 
