@@ -20,8 +20,6 @@ class Dashboard extends Component {
           deleteDeck={this.props.deleteDeck}
           cards={this.props.cards} 
           addDeck={this.props.addDeck}
-          openForm={this.props.openForm}
-          closeForm={this.props.closeForm}
         />
       </div>
     );

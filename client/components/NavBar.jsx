@@ -4,7 +4,6 @@ import Dashboard from '../main/Dashboard.jsx';
 import Login from '../main/Login.jsx';
 import Deck from '../main/Deck.jsx';
 import Quiz from '../main/Quiz.jsx';
-import ReactDOM from "react-dom";
 
 class NavBar extends Component {
   constructor(props) {
@@ -13,17 +12,6 @@ class NavBar extends Component {
       username: 'barsTwo',
       decks: [],
       allDecksCards: [],
-      // username: 'Stacy',
-      // decks: ['math', 'physics', 'python', 'polisci', 'redux', 'latin', 'anatomy', 'history', 'chemistry'],
-      // mathCards: [
-      //   {question: 'What is the capital of New York State?', answer: 'Albany'},
-      //   {question: 'What is the relationship between displacement, time interval and average velocity of an object travelling in uniform motion?', answer: 'When d gets larger and t is constant, the average velocity gets larger. When t gets larger, and d is constant, the average velocity gets smaller. When av gets larger, the slope position of a position time (dt) graph gets steeper.'},
-      //   {question: '2 + 2', answer: '4'},
-      //   {question: '2 + 4', answer: '6'},
-      //   {question: '2 + 6', answer: '8'},
-      //   {question: '2 + 8', answer: '10'},
-      //   {question: '2 + 10', answer: '12'}
-      // ]
       mathCards: [],
       currentTopic: "",
       currentCards: [],
@@ -33,8 +21,6 @@ class NavBar extends Component {
     this.addDeck = this.addDeck.bind(this);
     this.editDeck = this.editDeck.bind(this);
     this.deleteDeck = this.deleteDeck.bind(this);
-    this.openForm = this.openForm.bind(this);
-    this.closeForm = this.closeForm.bind(this);
   };
   // }
 
@@ -72,7 +58,7 @@ class NavBar extends Component {
   }
   */
 
-  // hard-coded user
+  // hard-coded the user
   componentDidMount() {
     // get the decks of the current logged-in user
     fetch(`/api/barsTwo/deck/all`)
@@ -93,8 +79,35 @@ class NavBar extends Component {
         // hardcoding the art deck for ryan to work on stuff
         const tempCards = data[0].decks[0].cards
         console.log('testing the cards: ', tempCards)
+        // console.log('getting the id? :', data[0].decks[0].cards[cards.length-1])
 
         this.setState({ decks: userDecks, allDecksCards: userInventory, mathCards: tempCards});
+      });
+  }
+
+  addCard(e) {
+    // get the questions and answers from user input
+    const newQuestion = document.getElementById('newQuestion').value;
+    const newAnswer = document.getElementById('newAnswer').value;
+
+    fetch(`/api/${this.state.username}/createCard`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      // "geography" is hardcoded, should be dynamic
+      body: JSON.stringify({ topic: "Geography", question: newQuestion, answer: newAnswer, }),
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        console.log('data after adding card: ', data);
+        console.log('data decks after adding card: ', data.decks);
+        console.log('getting the id? :', data[0].decks[0].cards)
+        const updatedDecks = [];
+        for (let i = 0; i < data.decks.length; i += 1) {
+            updatedDecks.push(data.decks[i].topic);
+          
+        }
+        console.log('decks after delete: ', updatedDecks);
+        this.setState({ decks: updatedDecks });
       });
   }
 
@@ -104,7 +117,6 @@ class NavBar extends Component {
 
     fetch(`/api/${this.state.username}/deck/delete`, {
       method: 'DELETE',
-      // need to update "deck" in fetch request based on the ID in line below
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ topic: selectedTopic }),
     })
@@ -122,19 +134,13 @@ class NavBar extends Component {
       });
   }
 
-  closeForm(event) {
-    console.log('close this')
-    // document.getElementById("popupForm").style.display = "none";
-  }
-
-  openForm(event) {
-    console.log('open this')
-    // document.getElementById("popupForm").style.display = "block";
-  }
 
   addDeck(event) {
+    const userInput = document.getElementById('createDeck').value;
+    // console.log('selected: ', userInput)
     // edit to add a form where the user can input data
     console.log('ADD DECK BUTTON CLICKED');
+    // on submit
 
     // const selectedTopic = event.target.attributes.topic.nodeValue;
     console.log('decks before added: ', this.state.decks);
@@ -143,7 +149,7 @@ class NavBar extends Component {
       method: 'PATCH',
       // need to update "deck" in fetch request based on the ID in line below
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ topic: "Hey", cards: {} }),
+      body: JSON.stringify({ topic: userInput, cards: {} }),
     })
       .then((data) => data.json())
       .then((data) => {
@@ -154,6 +160,8 @@ class NavBar extends Component {
             updatedDecks.push(data.decks[i].topic);
         }
         console.log('decks after add: ', updatedDecks);
+
+
         this.setState({ decks: updatedDecks });
       });
 
@@ -223,8 +231,7 @@ class NavBar extends Component {
               deleteDeck={this.deleteDeck}
               cards={this.state.mathCards} 
               addDeck={this.addDeck}
-              openForm={this.openForm}
-              closeForm={this.closeForm}
+
             />
           </Route>
 
@@ -236,8 +243,7 @@ class NavBar extends Component {
               deleteDeck={this.deleteDeck}
               cards={this.state.mathCards} 
               addDeck={this.addDeck}
-              openForm={this.openForm}
-              closeForm={this.closeForm}
+
             />
           </Route>
 
@@ -267,6 +273,8 @@ class NavBar extends Component {
             />
           </Route>
         </Switch>
+
+
       </body>
     );
   }

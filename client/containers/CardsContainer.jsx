@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SingleCard from '../components/SingleCard.jsx';
+import CreateCard from '../components/CreateCard.jsx';
 
 class CardsContainer extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class CardsContainer extends Component {
           </h1>
         </div>
         <div className="editSection">
+          <CreateCard addDeck={this.props.addDeck} />
           <div className="questionAnswerHeaders">
             <h1>Qs</h1>
             {/* <div className="headerDivider"></div> */}

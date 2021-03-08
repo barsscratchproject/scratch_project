@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DeckIcon from './DeckIcon.jsx';
 import CreateDeck from './CreateDeck';
 
+
 // use the commented out stuff below export after figuring out state/props/shit
 
 class DeckGrid extends Component {
@@ -14,7 +15,7 @@ class DeckGrid extends Component {
     const decks = [];
     for (let i = 0; i < this.props.decks.length; i++) {
       // const currDeck = this.props.decks[i];
-      decks.push(
+      decks.unshift(
         <DeckIcon
           user={this.props.user} 
           key={`Deck${i}`}
@@ -28,9 +29,7 @@ class DeckGrid extends Component {
     }
     return (
       <div className="deckGrid">
-        <CreateDeck addDeck={this.props.addDeck} 
-        openForm={this.props.openForm}
-        closeForm={this.props.closeForm} />
+        <CreateDeck addDeck={this.props.addDeck} />
         {decks}
       </div>
     );
@@ -48,6 +47,8 @@ export default DeckGrid;
 //   }
 //   return <div className="displayGrid">Hi from DeckGrid</div>;
 // };
+
+
 
 
 
