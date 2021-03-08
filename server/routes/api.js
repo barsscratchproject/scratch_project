@@ -11,13 +11,13 @@ router.get('/:user/deck/', userController.findDeck);
 // ...creates new deck for existing user (:user)
 router.patch('/:user/createDeck', userController.createDeck);
 // ...edits specific deck (:deck) for existing user (:user)
-// router.patch('/:user/deck/edit', userController.editDeck);
+router.patch('/:user/editDeck', userController.editDeck);
 // ...deletes deck (:deck) for existing user (:user)
 router.delete('/:user/deck/delete', userController.deleteDeck);
 
 // Cards...
 // ...creates card in a deck (:deck) specified by the user (:user)
-router.post('/:user/createCard', userController.createCard);
+// router.post('/:user/createCard', userController.createCard);
 // router.post('/cards/:user/:deck', userController.createCard);
 // ...returns all cards from deck (:deck)
 // Note: we may need an identifier for each card
