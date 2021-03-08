@@ -53,6 +53,11 @@ userController.createDeck = function (req, res) {
   );
 };
 
+// create card -
+// find all cards -
+// find specific card <--- maybe
+// edit a specific card
+// delete specific card
 // return just decks - X
 // Find topic passed into params - X
 // find specific topic in specific user deck - X
@@ -100,6 +105,7 @@ userController.deleteDeck = function (req, res, next) {
   User.findOneAndUpdate(
     { userName: req.params.user },
     { $pull: { decks: { topic: req.body.topic } } },
+    { new: true },
     (err, doc) => {
       if (err) {
         console.log('Error updating document!');
@@ -122,12 +128,13 @@ userController.deleteDeck = function (req, res, next) {
 userController.createCard = function (req, res) {
   console.log('createCard invoked!');
   User.updateOne(
-    { userName: 'john', 'decks.topic': 'literature' },
+    { userName: req.params.user, 'decks.topic': req.body.topic },
     {
       $push: {
         'decks.$.cards': {
-          question: 'that is the question',
-          answer: 'to be, or not to be',
+          id: req.params.user + req.body.topic,
+          question: req.body.question,
+          answer: req.body.answer,
         },
       },
     },
