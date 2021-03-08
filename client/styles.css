@@ -1,8 +1,13 @@
 body {
-  background-color: rgb(184, 184, 240);
+  background-color: rgb(169, 188, 208);
   width: 100%;
   margin: 0px 0px;
   padding: 0px 0px;
+}
+
+button:hover{
+  cursor: pointer;
+  filter: brightness(75%);
 }
 
 /* Navbar styling; appears on the top of every page */
@@ -10,15 +15,37 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  border: 1px solid greenyellow;
+  align-items: center;
+  background-color: rgb(155, 182, 211);
+  /* border: 1px solid greenyellow; */
+  /* background-color: rgb(88, 164, 176); */
+  /* color: rgb(216, 219, 226); */
   width: 100%;
 }
 
+/* unvisited navbar link */
+.navLinks:link {
+  color: rgb(0, 26, 255);
+}
+
+/* visited navbar link */
+.navLinks:visited {
+  color: rgb(0, 26, 255);
+}
+
+/* mouse over navbar link */
+.navLinks:hover {
+  color: red;
+}
+
+/* selected navbar link */
+.navLinks:active {
+  color: red;
+}
+
+/* navbar home/dashboard logo */
 .logo {
-  display: inline-block;
-  font-size: 1rem;
-  margin-top: 10px;
-  margin-left: 20px;
+
 }
 
 /* 
@@ -26,8 +53,8 @@ Header at top of dashboard page, BEFORE/ABOVE deckscontainer display
 displays the text "Welcome, User!" 
 */
 .welcomeUser {
-  color: rgb(0, 0, 110);
-  font-family: 'Fascinate';
+  color: rgb(27, 27, 30);
+  /* font-family: 'Fascinate'; */
   display: flex;
   justify-content: center;
 }
@@ -39,45 +66,121 @@ displays the text "Welcome, User!"
   justify-content: center;
   align-items: center;
   width: 99%;
-  border: 1px solid red;
-  background-color: lavender;
+  /* border: 1px solid red; */
+  /* background-color: white; */
 }
 
 /* Grid inside dashboard box; contains add deck and all other deck icons */
 .deckGrid {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  /* grid-template-columns: auto auto auto auto; */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
   grid-gap: 50px;
   width: 90%;
-  border: 1px solid orange;
-  background-color: rgb(214, 210, 210);
+  /* border: 1px solid orange; */
+  background-color: white;
+  margin-bottom: 100px;
+  padding: 50px 0px 50px 0px;
 }
 
 /* A single deck icon as rendered on the dashboard page */
 .singleDeckIcon {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid blue;
-  width: 200px;
-  height: 200px;
+  background-image:
+  linear-gradient(180deg, white 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
+  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, #DDD 1px, #DDD calc(1.5rem + 1px));
+  box-shadow: 1px 1px 3px rgba(0,0,0,.25);
+  height: 10rem;
+  width: 250px;
+  margin: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-/* Dashboard page single deck h1 topic header */
+/* Dashboard page single deck h1 TOPIC header */
 .oneDeck {
+  display: flex;
+  justify-content: center;
   color: rgb(214, 43, 71);
+}
+
+
+/* Q U I Z */
+/* Dashboard page single deck "quiz me" button CONTAINER */
+.quizBtnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  /* background-color: orange; */
 }
 
 /* Dashboard page single deck "quiz me" button */
 .singleDeckQuizMeBtn {
-  color: green;
+  background-color: rgb(134, 214, 134);
+  border: none;
+  padding: 10px 10px;
+  border-radius: 5px;
 }
 
-/* Dashboard page single deck "edit" and "delete" buttons container */
-.singleDeckEditBtns {
-  color: blue;
+
+/* E D I T */
+/* Dashboard page single deck edit buttons CONTAINER */
+.editBtnContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 5px 2px 5px;
+  /* background-color: blue; */
 }
 
-/* Dashboard page single deck h1 topic header  */
-.singleDeckQuizMeBtn {
-
+/* Dashboard page single deck "edit" button */
+.singleDeckEditBtn {
+  background-color: rgb(153, 60, 153);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
+
+/* Dashboard page single deck "delete" button */
+.singleDeckDeleteBtn {
+  background-color: red;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Dashboard page deck creation element */
+.createDeckCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image:
+  linear-gradient(180deg, white 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
+  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, #DDD 1px, #DDD calc(1.5rem + 1px));
+  box-shadow: 1px 1px 3px rgba(0,0,0,.25);
+  height: 10rem;
+  width: 250px;
+  margin: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.addDeckButton {
+  background-color: transparent;
+  font-size: 20px;
+  height: 150px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid red;
+  color: red;
+}
+
+/* .addNewDeckText {
+  font-size: 50px;
+  color: red;
+} */
