@@ -8,14 +8,12 @@ class DecksContainer extends Component {
   }
 
   render() {
-    console.log('DECKS CONTAINER this.props.decks', this.props.decks);
+    // console.log('DECKS CONTAINER this.props.decks', this.props.decks);
+    // console.log(' from the delete deckscont ', this.props.deleteDeck);
     return (
       <div className="dashboardBox">
         {/* <h1>Hi from DecksContainer</h1> */}
-        <DeckGrid
-          decks={this.props.decks}
-          // deleteDeck={this.props.deleteDeck}
-        />
+        <DeckGrid decks={this.props.decks} deleteDeck={this.props.deleteDeck} />
       </div>
     );
   }
