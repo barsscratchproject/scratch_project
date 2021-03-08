@@ -20,7 +20,6 @@ class NavBar extends Component {
   createUser(event) {
     // need to add the input form somewhere and give it the same id as below
     const newUser = document.getElementById('newUser').value;
-
     fetch('/api/user', {
       method: 'POST',
       body: {},
@@ -58,12 +57,10 @@ class NavBar extends Component {
         for (let i = 0; i < data[0].length; i += 1) {
           updatedDecks.push(data[0][i].topic);
         }
-
         this.setState({ decks: updatedDecks });
       });
       */
   }
-
 
   // addDeck(event) {
   //   // edit to add a form where the user can input data
@@ -82,9 +79,6 @@ class NavBar extends Component {
       });
   }
   */
-
-
-  
 
   render() {
     console.log('NAVBAR this.state.decks', this.state.decks);
@@ -128,16 +122,28 @@ class NavBar extends Component {
           </Route>
 
           <Route path="/deck">
-            <Deck user={this.state.username} decks={this.state.decks} cards={this.state.mathCards} />
+            <Deck
+              user={this.state.username}
+              decks={this.state.decks}
+              cards={this.state.mathCards}
+            />
           </Route>
 
           <Route path="/quiz">
-            <Quiz user={this.state.username} decks={this.state.decks} cards={this.state.mathCards} />
+            <Quiz
+              user={this.state.username}
+              decks={this.state.decks}
+              cards={this.state.mathCards}
+            />
           </Route>
 
           <Route path="/login">
-            <Login userLogin={this.userLogin} user={this.state.username} decks={this.state.decks} cards={this.state.mathCards} />
-
+            <Login
+              userLogin={this.userLogin}
+              user={this.state.username}
+              decks={this.state.decks}
+              cards={this.state.mathCards}
+            />
           </Route>
         </Switch>
       </body>
