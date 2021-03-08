@@ -12,7 +12,10 @@ class DecksContainer extends Component {
     return (
       <div className="dashboardBox">
         {/* <h1>Hi from DecksContainer</h1> */}
-        <DeckGrid decks={this.props.decks} />
+        <DeckGrid
+          decks={this.props.decks}
+          // deleteDeck={this.props.deleteDeck}
+        />
       </div>
     );
   }

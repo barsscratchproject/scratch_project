@@ -12,7 +12,7 @@ class DeckIcon extends Component {
       // <h1>THIS IS AN ICON</h1>
       <div className="singleDeckIcon">
         {/* <div className="quizBtnContainer"> */}
-          {/* <button className="singleDeckQuizMeBtn">Quiz me!</button> */}
+        {/* <button className="singleDeckQuizMeBtn">Quiz me!</button> */}
         {/* </div> */}
         <h1 className="oneDeck">{this.props.topic}</h1>
         <div className="editBtnContainer">
