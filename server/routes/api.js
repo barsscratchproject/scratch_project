@@ -26,19 +26,7 @@ router.delete('/:user/deleteCard', userController.deleteCard);
 // User...
 // ...finds existing user
 router.get('/user/:user', userController.findUser);
-// ...creates user
+// ...creates user, sets cookie
 router.post('/user', userController.createUser);
-
-// create deck X
-// find all decks
-// find specific deck
-// edit a specific deck
-// delete deck
-
-// create card
-// find all cards
-// find specific card <--- maybe
-// edit a specific card
-// delete specific card
 
 module.exports = router;
