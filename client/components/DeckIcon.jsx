@@ -5,9 +5,6 @@ class DeckIcon extends Component {
     super(props);
   }
   render() {
-    // console.log('DECK ICON this.props.decks', this.props.decks);
-    // console.log('DECK ICON this.props.topics', this.props.topic);
-
     return (
       // <h1>THIS IS AN ICON</h1>
       <div className="singleDeckIcon">
@@ -17,7 +14,16 @@ class DeckIcon extends Component {
         <h1 className="oneDeck">{this.props.topic}</h1>
         <div className="editBtnContainer">
           <button className="singleDeckEditBtn">Edit</button>
-          <button className="singleDeckDeleteBtn">Delete</button>
+          <button
+            className="singleDeckDeleteBtn"
+            topic={this.props.topic}
+            onClick={(e) => {
+              e.preventDefault();
+              this.props.deleteDeck(e);
+            }}
+          >
+            Delete
+          </button>
         </div>
       </div>
     );

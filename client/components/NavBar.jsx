@@ -14,6 +14,7 @@ class NavBar extends Component {
     };
 
     this.userLogin = this.userLogin.bind(this);
+    this.deleteDeck = this.deleteDeck.bind(this);
   }
 
   /*
@@ -31,35 +32,45 @@ class NavBar extends Component {
   userLogin(event) {
     // get the username (inputted by user)
     const userInput = document.getElementById('login').value;
-
     // get the decks of the current logged-in user
     fetch(`/api/${userInput}/deck/all`)
       .then((data) => data.json())
       .then((data) => {
+        console.log('fetched data: ', data);
         const userDecks = [];
         for (let i = 0; i < data[0].decks.length; i += 1) {
           userDecks.push(data[0].decks[i].topic);
         }
+        console.log('all the decks ', userDecks);
         this.setState({ decks: userDecks, username: userInput });
       });
   }
 
   deleteDeck(event) {
-    /*
+    const selectedTopic = event.target.attributes.topic.nodeValue;
+    console.log('decks before delete: ', this.state.decks);
+
     fetch(`/api/${this.state.username}/deck/delete`, {
       method: 'DELETE',
       // need to update "deck" in fetch request based on the ID in line below
-      body: JSON.stringify({ topic: `${EDIT_THIS}` }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topic: selectedTopic }),
     })
       .then((data) => data.json())
       .then((data) => {
+        // nonconventional way, need schema for the decks because the message body
+        console.log('data after delete: ', data);
         const updatedDecks = [];
-        for (let i = 0; i < data[0].length; i += 1) {
-          updatedDecks.push(data[0][i].topic);
+        /*
+        for (let i = 0; i < data.decks.length; i += 1) {
+          if (data.decks[i].topic !== selectedTopic) {
+            updatedDecks.push(data.decks[i].topic);
+          }
         }
+        */
+        console.log('decks after delete: ', updatedDecks);
         this.setState({ decks: updatedDecks });
       });
-      */
   }
 
   // addDeck(event) {
@@ -81,7 +92,7 @@ class NavBar extends Component {
   */
 
   render() {
-    console.log('NAVBAR this.state.decks', this.state.decks);
+    // console.log('NAVBAR this.state.decks', this.state.decks);
     return (
       <body>
         <nav className="navBar">
@@ -118,7 +129,11 @@ class NavBar extends Component {
         <Switch>
           {/* need to render something for the home route? */}
           <Route path="/dashboard" exact>
-            <Dashboard user={this.state.username} decks={this.state.decks} />
+            <Dashboard
+              user={this.state.username}
+              decks={this.state.decks}
+              deleteDeck={this.deleteDeck}
+            />
           </Route>
 
           <Route path="/deck">
