@@ -95,6 +95,25 @@ userController.findDeck = function (req, res, next) {
   );
 };
 
+// edit a specific deck
+userController.editDeck = function (req, res, next) {
+  console.log('editDeck invoked!');
+  User.updateOne(
+    { userName: 'john', 'decks.topic': 'express' },
+    { $set: { 'decks.$.topic': 'react' } },
+    (err, doc) => {
+      if (err) {
+        console.log('error editing deck!');
+        res.status(400).json(err);
+      } else {
+        console.log('successfully edited deck!');
+        res.status(200).json(doc);
+      }
+    }
+  );
+};
+
+// delete a specific deck
 userController.deleteDeck = function (req, res, next) {
   console.log('deleteDeck invoked!');
   User.findOneAndUpdate(
@@ -112,13 +131,13 @@ userController.deleteDeck = function (req, res, next) {
   );
 };
 
-// create card -
+// create card - X
 // find all cards -
 // find specific card <--- maybe
 // edit a specific card
 // delete specific card
 
-// create card
+// create a card
 userController.createCard = function (req, res) {
   console.log('createCard invoked!');
   User.updateOne(
@@ -178,7 +197,5 @@ userController.createCard = function (req, res) {
 //     }
 //   );
 // };
-
-// deletes specific deck
 
 module.exports = userController;
