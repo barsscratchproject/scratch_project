@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// const MONGO_URI = 'mongodb+srv://ryanmcdaniel:admin@cluster0.mg5pj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const MONGO_URI =
   'mongodb+srv://barsadmin:bh4iDXf8mI5eAyiz@cluster0.gmc5l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
