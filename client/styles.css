@@ -1,6 +1,7 @@
 body {
   /* background-color: rgb(194, 200, 255); */
-  background-color: rgb(237, 237, 243);
+  /* background-color: rgb(237, 237, 243); */
+  background-color: white;
   width: 100%;
   margin: 0px 0px;
   padding: 0px 0px;
@@ -60,7 +61,7 @@ body {
   justify-content: center;
   background-image:
   linear-gradient(180deg, white 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
-  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, rgb(215, 219, 255) 1px, rgb(215, 219, 255) calc(1.5rem + 1px));
+  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, rgb(201, 201, 201) 1px, rgb(215, 219, 255) calc(1.5rem + 1px));
   box-shadow: 1px 1px 3px rgba(0,0,0,.25);
   height: 40px;
   width: 80px;
@@ -142,7 +143,7 @@ displays the text "Welcome, User!"
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* margin: 0px 5px 2px 5px; */
+  margin: 0px 0px -5px 0px;
   /* background-color: blue; */
 }
 
@@ -159,7 +160,6 @@ displays the text "Welcome, User!"
   cursor: pointer;
   background-color: rgb(230, 34, 2);
   color: white;
-  /* background-color: F0A4A4; */
 }
 
 /* Dashboard page single deck "delete" button */
@@ -181,6 +181,7 @@ displays the text "Welcome, User!"
 /* Dashboard page deck creation element */
 .createDeckCard {
   display: flex;
+  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
   background-image:
@@ -195,8 +196,52 @@ displays the text "Welcome, User!"
   transform: translateY(-50%);
 }
 
+.createContent {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  width: 100%;
+}
+
+.createDeckText {
+  /* margin-top: 0px; */
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.deckNameInput {
+  /* margin-bottom: 10px; */
+  display: flex;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Dashboard single card creation button */
+.createDeckButton {
+  background-color: rgb(245, 241, 241);
+  color: rgb(68, 68, 68);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: -15px;
+}
+
+/* Dashboard single card creation button (HOVER EFFECT) */
+.createDeckButton:hover {
+  cursor: pointer;
+  background-color: rgb(230, 34, 2);
+  color: white;
+}
+
+
 /* Dashboard "add a new deck" button/text */
-.addDeckButton {
+/* .addDeckButton {
   background-color: transparent;
   font-size: 20px;
   height: 150px;
@@ -206,7 +251,8 @@ displays the text "Welcome, User!"
   justify-content: center;
   border: none;
   color: rgb(230, 34, 2);
-}
+} */
+
 
 
 
@@ -321,6 +367,112 @@ displays the text "Welcome, User!"
 }
 
 
+
+.createCardFlashcard {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  background-image:
+  linear-gradient(180deg, white 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
+  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, rgb(159, 168, 255) 1px, rgb(159, 168, 255) calc(1.5rem + 1px));
+  box-shadow: 1px 1px 3px rgba(0,0,0,.25);
+  height: 12rem;
+  width: 350px;
+  margin: 30px auto auto auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.createCardText {
+  color: red;
+  font-weight: bolder;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+}
+
+.createCardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: space-around;
+  line-height: 30px;
+  margin-top: 10px;
+}
+
+.questionAnswerPrompt {
+  color: red;
+  font-weight: bold;
+  margin: 5px 0px 5px 0px;
+}
+
+.createCardQuestion {
+  display: flex;
+  /* margin: 10px 10px 10px 10px; */
+  align-items: center;
+}
+
+.createCardAnswer {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  /* margin: 10px 10px 10px 10px; */
+}
+
+.cardQAInput {
+  margin: 15px 0px 10px 30px;
+}
+
+/* Edit single card creation button */
+.createCardButton {
+  background-color: rgb(245, 241, 241);
+  color: rgb(68, 68, 68);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 10px auto -15px auto;
+  width: 80%;
+}
+
+/* Edit single card creation button (HOVER EFFECT) */
+.createCardButton:hover {
+  cursor: pointer;
+  background-color: rgb(230, 34, 2);
+  color: white;
+  /* margin-bottom: 0px; */
+}
+
+/*
+<form
+className="createDeckCard"
+id="inputForm"
+onSubmit={(e) => {
+  e.preventDefault();
+  this.props.addDeck(e);
+}}>
+<br />
+<div className="createCardContent">
+<label htmlFor="addNewCard" className="createCardText">ADD A NEW CARD</label>
+<br />
+<div className="createCardQuestion">
+  <label htmlFor="addNewCard" className="questionAnswerPrompt">Question:</label>
+  <input id="createDeck" type="text" className="cardQAInput" />
+</div>
+<br />
+
+<div className="createCardAnswer">
+  <label htmlFor="addNewCard" className="questionAnswerPrompt">Answer:</label>
+  <input id="createDeck" type="text" className="cardQAInput" />
+</div>
+<button className="createCardButton" type="submit">Create Card</button>
+</div>
+</form>
+*/
+
+
 /* Edit page single card delete button next to each entry */
 .deckDeleteButton {
   display: flex;
@@ -372,17 +524,32 @@ displays the text "Welcome, User!"
   width: 100%;
   display: flex;
   flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: space-between; */
   background-color: white;
+  /* margin-top: 200px; */
 }
 
+/* 
+.allFlashcards {
+  width: 100%;
+  display: flex;
+  /* flex-direction: column; 
+  /* align-items: space-between; 
+  justify-content: space-evenly;
+  margin-top: 100px;
+  background-color: blue;
+} 
+*/
+
 /* Full page container */
-.flashcardContainer {
+/* .flashcardContainer { */
   /* display: flex; */
   /* flex-direction: column; */
   /* background-color: red; */
   /* border: 1px solid blue; */
 
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
   background-image:
@@ -393,24 +560,110 @@ displays the text "Welcome, User!"
   width: 500px;
   margin: 150px auto auto auto;
   /* margin: auto; */
+  /* position: relative; */
+  /* top: 50%; */
+  /* transform: translateY(-50%);  */
+/* } */
+
+
+
+.allFlashcards {
+  width: 100%;
+  display: flex;
+  /* flex-direction: column; */
+  /* align-items: space-between; */
+  justify-content: center;
+  margin-top: 70px;
+  /* background-color: blue; */
+}
+
+
+
+
+.singleTopic {
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* flex-direction: column; */
+  /* border: 1px solid red; */
+  width: 90%;
+  /* margin-top: 200px; */
+  /* line-height: 0px; */
+  /* background-color: red; */
+}
+
+.flashcardContainerFront {
+  /* border: 1px solid green; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-image: */
+  /* linear-gradient(180deg, white 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px), */
+  /* repeating-linear-gradient(0deg, transparent, transparent 1.5rem, rgb(159, 168, 255) 1px, rgb(159, 168, 255) calc(1.5rem + 1px)); */
+  box-shadow: 1px 1px 3px rgba(0,0,0,.25);
+  height: 14rem;
+  width: 500px;
+  margin: 0px 0px 0px 100px;
+  padding: 0px 0px;
+  /* margin: 0px auto auto auto; */
+  /* margin: auto;  */
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%); 
 }
 
-/* Single flashcard container */
-.singleFlashcard {
+.flashcardContainerBack {
+  /* border: 1px solid blue; */
+
+
   display: flex;
-  /* background-color:rgb(0, 26, 255); */
-  /* border: 1px solid red; */
+  /* align-items: center; */
+  justify-content: center;
+  /* padding: 30px 0px 0px 0px; */
+  /* margin: 80px 0px 0px 0px; */
+  background-image:
+  linear-gradient(180deg, white 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
+  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, rgb(159, 168, 255) 1px, rgb(159, 168, 255) calc(1.5rem + 1px));
+  box-shadow: 1px 1px 3px rgba(0,0,0,.25);
+  height: 14rem;
+  width: 500px;
+  margin: 0px auto auto auto;
+  /* margin: auto;  */
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); 
+
 }
 
-/* Single flashcard question */
 .flashcardQuestion {
   /* background-color: purple; */
 }
 
-/* Single flashcard answer */
+/* Single flashcard answer text */
 .flashcardAnswer {
-  /* background-color: orange; */
+  margin-top: 53px;
+  line-height: 25px;
 }
+
+/*
+<div className="quizContainer">
+  {flashcards}
+  <button>Show me the answer</button>
+  <button>Next card</button>
+</div>
+____
+
+<div className="allFlashcards">
+<div className="singleTopic">
+  <div className="flashcardContainerFront">
+    <h2 className="flashcardQuestion">{this.props.question}</h2>
+  </div>
+
+  <div className="flashcardContainerBack">
+    <h2 className="flashcardAnswer">{this.props.answer}</h2>
+  </div>
+</div>
+</div>
+*/

@@ -8,7 +8,7 @@ class Quiz extends Component {
     // console.log('QUIZ ANSWER', this.props.cards.answer);
     const flashcards = [];
     for (let i = 0; i < this.props.cards.length; i++) {
-      flashcards.push(<QuizCard 
+      flashcards.unshift(<QuizCard 
         key={`Card${i}`} 
         user={this.props.username} 
         decks={this.props.decks} 
@@ -18,12 +18,9 @@ class Quiz extends Component {
     }
     return (
       <div className="quizContainer">
-        {/* <QuizCard user={this.state.username} decks={this.state.decks} cards={this.state.mathCards} /> */}
         {flashcards}
-        {/* <h1>hey quiz</h1> */}
-        {/* <h2>QUESTION/ANSWER</h2> */}
-        <button>Show me the answer</button>
-        <button>Next card</button>
+        {/* <button>Show me the answer</button> */}
+        {/* <button>Next card</button> */}
       </div>
     );
   }

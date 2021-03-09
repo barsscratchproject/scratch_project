@@ -40,9 +40,10 @@ userController.deleteUser = function (req, res, next) {
 
 // create a deck
 userController.createDeck = function (req, res) {
-  User.updateOne(
+  User.findOneAndUpdate(
     { userName: req.params.user },
     { $push: { decks: { topic: req.body.topic, cards: {} } } },
+    { new: true },
     (err, doc) => {
       if (err) {
         console.log('error adding deck!');
@@ -50,7 +51,7 @@ userController.createDeck = function (req, res) {
       } else {
         console.log('deck created!');
         console.log(doc);
-        return res.status(200).json('user updated!');
+        return res.status(200).json(doc);
       }
     }
   );

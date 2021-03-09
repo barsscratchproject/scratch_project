@@ -6,13 +6,41 @@ class CreateDeck extends Component {
   }
   render() {
     return (
-      <div className="createDeckCard">
-        <div className="createDeckText">
-          <button className="addDeckButton">+{'\n'}ADD A NEW DECK</button>
+
+      // create a new deck
+      <form
+          className="createDeckCard"
+          id="inputForm"
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.props.addDeck(e);
+          }}>
+        <br />
+        <div className="createContent">
+          <label htmlFor="addNewDeck" className="createDeckText">ADD A NEW DECK</label>
+          <br />
+          <br />
+          <input id="createDeck" type="text" className="deckNameInput" />
+          <button className="createDeckButton" type="submit">Create Deck</button>
         </div>
-      </div>
+      </form>
+
+
+
+
+
     );
   }
 }
 
 export default CreateDeck;
+
+
+
+
+
+
+
+
+  
+
