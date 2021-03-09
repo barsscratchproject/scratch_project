@@ -1,14 +1,3 @@
-DATA MODELS
-Data Model Summary
-The model below shows the structure of data as saved in the mongoDB database.
-
-// User Objects
-Each object within the users object represents an app user. Users are instantiated with an _id and a 'decks' property. The key and value of _id are both automatically instantiated by mongoDB (this application does not provide the id or invoke its creation in code). 
-
-// Decks Array
-The 'decks' property value is an array of objects. Each object within the decks array represents a different deck for the user. When the user is first created, the decks property has a value of an empty array.
-
-Data Model:
 users : {
   {
     _id: ObjectId
