@@ -5,6 +5,7 @@ class SingleCard extends Component {
     super(props);
   }
   render() {
+    // console.log('delete function: ', this.props.deleteCard)
     return (
       <div className="editSingleCard">
         <div className="questionAnswer">
@@ -14,7 +15,10 @@ class SingleCard extends Component {
         </div>
         <div className="deckEditButtons">
           <button className="deckEditButton">Edit</button>
-          <button className="deckDeleteButton">Delete</button>
+          <button id="deleteCard" className="deckDeleteButton" onClick={(e) => {
+            e.preventDefault();
+            this.props.deleteCard(e);
+          }}>Delete</button>
         </div>
       </div>
     );
