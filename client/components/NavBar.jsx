@@ -9,7 +9,7 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'barsTwo',
+      username: 'BARS',
       decks: [],
       allDecksCards: [],
       mathCards: [],
@@ -21,6 +21,8 @@ class NavBar extends Component {
     this.addDeck = this.addDeck.bind(this);
     this.editDeck = this.editDeck.bind(this);
     this.deleteDeck = this.deleteDeck.bind(this);
+    this.addCard = this.addCard.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   };
   // }
 
@@ -61,7 +63,7 @@ class NavBar extends Component {
   // hard-coded the user
   componentDidMount() {
     // get the decks of the current logged-in user
-    fetch(`/api/barsTwo/deck/all`)
+    fetch(`/api/${this.state.username}/deck/all`)
       .then((data) => data.json())
       .then((data) => {
         console.log('fetched data: ', data);
@@ -89,26 +91,30 @@ class NavBar extends Component {
     // get the questions and answers from user input
     const newQuestion = document.getElementById('newQuestion').value;
     const newAnswer = document.getElementById('newAnswer').value;
+    const newId = (this.state.mathCards.length) + 1;
 
     fetch(`/api/${this.state.username}/createCard`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       // "geography" is hardcoded, should be dynamic
-      body: JSON.stringify({ topic: "Geography", question: newQuestion, answer: newAnswer, }),
+      body: JSON.stringify({ topic: "Geography", question: newQuestion, answer: newAnswer, id: newId}),
     })
       .then((data) => data.json())
       .then((data) => {
         console.log('data after adding card: ', data);
         console.log('data decks after adding card: ', data.decks);
-        console.log('getting the id? :', data[0].decks[0].cards)
-        const updatedDecks = [];
-        for (let i = 0; i < data.decks.length; i += 1) {
-            updatedDecks.push(data.decks[i].topic);
-          
-        }
+
+        const updatedDecks = [...this.state.mathCards];
+        updatedDecks.unshift({id: newId, question: newQuestion, answer: newAnswer})
         console.log('decks after delete: ', updatedDecks);
-        this.setState({ decks: updatedDecks });
+        this.setState({ mathCards: updatedDecks });
       });
+  }
+
+  deleteCard(event) {
+    const selectedCard = event
+    console.log('selectedCard: ', selectedCard)
+    console.log('hi')
   }
 
   deleteDeck(event) {
@@ -231,6 +237,7 @@ class NavBar extends Component {
               deleteDeck={this.deleteDeck}
               cards={this.state.mathCards} 
               addDeck={this.addDeck}
+              addCard={this.addCard}
 
             />
           </Route>
@@ -243,6 +250,7 @@ class NavBar extends Component {
               deleteDeck={this.deleteDeck}
               cards={this.state.mathCards} 
               addDeck={this.addDeck}
+              addCard={this.addCard}
 
             />
           </Route>
@@ -252,6 +260,9 @@ class NavBar extends Component {
               user={this.state.username}
               decks={this.state.decks}
               cards={this.state.mathCards}
+              addCard={this.addCard}
+              deleteCard={this.deleteCard}
+      
             />
           </Route>
 

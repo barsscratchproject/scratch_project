@@ -209,12 +209,16 @@ displays the text "Welcome, User!"
   color: red;
   font-weight: bold;
   font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .deckNameInput {
   /* margin-bottom: 10px; */
   display: flex;
-  width: 40px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Dashboard single card creation button */
@@ -236,25 +240,6 @@ displays the text "Welcome, User!"
 }
 
 
-/*
-<form
-    className="createDeckCard"
-    id="inputForm"
-    onSubmit={(e) => {
-      e.preventDefault();
-      this.props.addDeck(e);
-    }}>
-  <br />
-  <div className="createContent">
-    <label htmlFor="addNewDeck" className="createDeckText">ADD A NEW DECK</label>
-    <br />
-    <br />
-    <input id="createDeck" type="text" className="deckNameInput" />
-    <button className="createDeckButton" type="submit">Create Deck</button>
-  </div>
-</form>
-*/
-
 /* Dashboard "add a new deck" button/text */
 /* .addDeckButton {
   background-color: transparent;
@@ -267,6 +252,7 @@ displays the text "Welcome, User!"
   border: none;
   color: rgb(230, 34, 2);
 } */
+
 
 
 
@@ -405,6 +391,7 @@ displays the text "Welcome, User!"
   font-size: 20px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 5px;
 }
 
 .createCardContent {
@@ -412,7 +399,8 @@ displays the text "Welcome, User!"
   flex-direction: column;
   justify-content: space-around;
   align-items: space-around;
-  line-height: 15px;
+  line-height: 30px;
+  margin-top: 10px;
 }
 
 .questionAnswerPrompt {

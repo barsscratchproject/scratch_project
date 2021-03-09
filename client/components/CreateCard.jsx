@@ -5,6 +5,7 @@ class CreateCard extends Component {
     super(props);
   }
   render() {
+    // console.log('EMERGENCY: ', this.props.addCard)
     return (
 
       // create a new deck
@@ -13,7 +14,7 @@ class CreateCard extends Component {
           id="inputForm"
           onSubmit={(e) => {
             e.preventDefault();
-            this.props.addDeck(e);
+            this.props.addCard(e);
           }}>
         <br />
         <div className="createCardContent">

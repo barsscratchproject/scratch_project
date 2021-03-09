@@ -8,6 +8,7 @@ class Dashboard extends Component {
   }
 
   render() {
+    // console.log('EMERGENCY: ', this.props.addCard)
     console.log('DASHBOARD this.props', this.props);
     console.log('dashboard addDeck: ', this.props.addDeck)
     return (
@@ -20,6 +21,7 @@ class Dashboard extends Component {
           deleteDeck={this.props.deleteDeck}
           cards={this.props.cards} 
           addDeck={this.props.addDeck}
+          addCard={this.props.addCard}
         />
       </div>
     );

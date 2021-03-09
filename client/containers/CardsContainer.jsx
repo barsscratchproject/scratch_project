@@ -8,6 +8,8 @@ class CardsContainer extends Component {
   }
 
   render() {
+    console.log('delete function: ', this.props.deleteCard)
+    // console.log('EMERGENCY: ', this.props.addCard)
     // console.log('CARDS CONTAINER user', this.props.user);
     // console.log('CARDS CONTAINER deck', this.props.deck);
     // console.log('CARDS CONTAINER this.props.cards', this.props.cards);
@@ -19,6 +21,7 @@ class CardsContainer extends Component {
           key={`Card${i}`}
           question={this.props.cards[i].question}
           answer={this.props.cards[i].answer}
+          deleteCard={this.props.deleteCard} 
         />,
       );
     }
@@ -31,7 +34,7 @@ class CardsContainer extends Component {
           </h1>
         </div>
         <div className="editSection">
-          <CreateCard addDeck={this.props.addDeck} />
+          <CreateCard addCard={this.props.addCard}/>
           <div className="questionAnswerHeaders">
             <h1>Qs</h1>
             {/* <div className="headerDivider"></div> */}
