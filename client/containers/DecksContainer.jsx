@@ -13,7 +13,14 @@ class DecksContainer extends Component {
     return (
       <div className="dashboardBox">
         {/* <h1>Hi from DecksContainer</h1> */}
-        <DeckGrid decks={this.props.decks} deleteDeck={this.props.deleteDeck} />
+        <DeckGrid 
+          user={this.props.user} 
+          decks={this.props.decks}
+          editDeck={this.props.editDeck}
+          deleteDeck={this.props.deleteDeck} 
+          cards={this.props.cards} 
+          addDeck={this.props.addDeck}
+        />
       </div>
     );
   }
