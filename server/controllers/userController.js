@@ -2,7 +2,6 @@ const User = require('../models/Models');
 const userController = {};
 
 // create a user
-// Name lowercased to help normalize future functions with user document
 userController.createUser = function (req, res, next) {
   console.log('create user detected!');
   User.create({
@@ -10,11 +9,14 @@ userController.createUser = function (req, res, next) {
   })
     .then((doc) => {
       console.log('User created!');
-      return res.status(200).json(doc);
+      res.locals.newUser = doc;
+      console.log('after assigning to locals');
+      console.log(res.locals.newUser);
+      next();
     })
     .catch((err) => {
       console.log('Error creating user!');
-      return res.status(400).json(err);
+      next(err);
     });
 };
 
@@ -31,6 +33,7 @@ userController.findUser = function (req, res, next) {
   });
 };
 
+// delete user
 userController.deleteUser = function (req, res, next) {
   // db.inventory.find( { tags: { $eq: [ "A", "B" ] } } )
 };
@@ -50,22 +53,9 @@ userController.createDeck = function (req, res) {
         console.log(doc);
         return res.status(200).json(doc);
       }
-    },
+    }
   );
 };
-
-// create card -
-// find all cards -
-// find specific card <--- maybe
-// edit a specific card
-// delete specific card
-// return just decks - X
-// Find topic passed into params - X
-// find specific topic in specific user deck - X
-// find all decks - X
-// delete deck - X
-// make sure new deck is created with cards object - X
-// edit deck -
 
 // find all the decks
 userController.findAllDecks = function (req, res, next) {
@@ -97,7 +87,7 @@ userController.findDeck = function (req, res, next) {
         console.log(doc[0].decks);
         return res.status(200).json(doc[0].decks);
       }
-    },
+    }
   );
 };
 
@@ -116,7 +106,7 @@ userController.editDeck = function (req, res, next) {
         console.log('successfully edited deck!');
         res.status(200).json(doc);
       }
-    },
+    }
   );
 };
 
@@ -144,15 +134,9 @@ userController.deleteDeck = function (req, res, next) {
         console.log('successfully updated document!');
         return res.status(200).json(doc);
       }
-    },
+    }
   );
 };
-
-// create card - X
-// find all cards -
-// find specific card
-// edit a specific card
-// delete specific card
 
 // create a card
 userController.createCard = function (req, res) {
@@ -177,7 +161,7 @@ userController.createCard = function (req, res) {
         console.log('successfully added card!');
         res.status(200).json(doc);
       }
-    },
+    }
   );
 };
 
@@ -197,7 +181,7 @@ userController.deleteCard = function (req, res) {
         console.log('successfully deleting card!');
         res.status(200).json(doc);
       }
-    },
+    }
   );
 };
 

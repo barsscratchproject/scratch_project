@@ -1,187 +1,73 @@
 DATA MODELS
-The models below show different potential ways to organize data in the mongoDB database.
+Data Model Summary
+The model below shows the structure of data as saved in the mongoDB database.
 
-Data Model One - Nested Objects
+// User Objects
+Each object within the users object represents an app user. Users are instantiated with an _id and a 'decks' property. The key and value of _id are both automatically instantiated by mongoDB (this application does not provide the id or invoke its creation in code). 
+
+// Decks Array
+The 'decks' property value is an array of objects. Each object within the decks array represents a different deck for the user. When the user is first created, the decks property has a value of an empty array.
+
+Data Model:
 users : {
-  user1:{
-    userName: “John”,
-    decks: {
-      react: {
-        0: { q: “q”, a: “a” },
-        1: { q: “q”, a: “a” },
-        2: { q: “q”, a: “a” },	
+  {
+    _id: ObjectId
+    userName: “john”,
+    decks: [
+      {
+        topic: "deck topic a",
+        cards: [
+          { id: Number, question: “question”, answer: “answer” },
+          { id: Number, question: “question”, answer: “answer” },
+          { id: Number, question: “question”, answer: “answer” },	
+        ]
       },
-      math: {
-        0: { q: “q”, a: “a” },
-        1: { q: “q”, a: “a” },
-        2: { q: “q”, a: “a” },
-        },
-      geography: {
-        0: { q: “q”, a: “a” },
-        1: { q: “q”, a: “a” },
-        2: { q: “q”, a: “a” },
+      {
+        topic: "deck topic b",
+        cards: [
+          { id: Number, question: “question”, answer: “answer” },
+          { id: Number, question: “question”, answer: “answer” },
+          { id: Number, question: “question”, answer: “answer” },	
+        ]
       },
-    }
-  },
-  user2:{
-    userName: "Mary”,
-    decks: {
-      react: {
-        0: { q: “q”, a: “a” },
-        1: { q: “q”, a: “a” },
-        2: { q: “q”, a: “a” },	
-      },
-      math: {
-        0: { q: “q”, a: “a” },
-        1: { q: “q”, a: “a” },
-        2: { q: “q”, a: “a” },
-        },
-      geography: {
-        0: { q: “q”, a: “a” },
-        1: { q: “q”, a: “a” },
-        2: { q: “q”, a: “a” },
-      },
-    }
-  },
-}
-
-
-Users: {
-  user1 : {
-    userName: “John”,
-    decks: {
-      react: {
-        topic: “react”,
-        cards: {
-          0: { q: “q”, a: “a” },
-          1: { q: “q”, a: “a” },
-          2: { q: “q”, a: “a” },
-        }
-      },
-      math: {
-        topic: “math”,
-        cards: {
-          0: { q: “q”, a: “a” },
-          1: { q: “q”, a: “a” },
-          2: { q: “q”, a: “a” },
-        }
-      },
-    }
-	}
-}
-
-
-user : {
-  _id: {...},
-  decks:[
-    deck1: {
-      card1: {
-    question: question,
-        answer: answer,
-      },
-      card2: {
-        question: question,
-        answer: answer,
-      },
-    },
-    deck2: {
-      card1: {
-        question: question,
-        answer: answer,
-      },
-      card2: {
-        question: question,
-        answer: answer,
-      },
-    },
-    deck3: {
-      card1: {
-        question: question,
-        answer: answer,
-      },
-      card2: {
-        question: question,
-        answer: answer,
-      },
-    },
-  ]
-
-}
-
-if(decks.topic === 'react'){
-  // iterate through cards array
-}
-
-return decks.cards
-decks[cards]
-user : {
-  _id: {...},
-  decks:[ {
-    topic: "react",
-    cards: {
-      1: {
-        question: what is the question?,
-        answer: here is the answer!
-      },
-      2: {
-        question: where is the question?,
-        answer: the answer is over here!
-      },
-      3: {
-        question: how many questions?,
-        answer: so many answers!
-      },
-    }
-  }
-    
-  ]
-}
-    
-
-user : {
-_id: {...},
-  decks:[
-    { topic: "react",
-      cards: [
-        {question: question?, answer: answer!},
-        {question: question?, answer: answer!},
-        {question: question?, answer: answer!},
-      ]
-    }
-  ]
-}   
-    
-    }
-    deck1: {
-      card1: {
-        question: question,
-        answer: answer,
-      },
-      card2: {
-        question: question,
-        answer: answer,
-      },
-    },
-    deck2: {
-      card1: {
-        question: question,
-        answer: answer,
-      },
-      card2: {
-        question: question,
-        answer: answer,
-      },
-    },
-    deck3: {
-      card1: {
-        question: question,
-        answer: answer,
-      },
-      card2: {
-        question: question,
-        answer: answer,
+      {
+        topic: "deck topic c",
+        cards: [
+          { id: Number, question: “question”, answer: “answer” },
+          { id: Number, question: “question”, answer: “answer” },
+          { id: Number, question: “question”, answer: “answer” },	
+        ]
       }
-    },
-  ]
-
+    ]
+  },
+  {
+    _id: ObjectId,
+    userName: jane,
+    decks: [
+      {
+        topic: "deck topic a",
+        cards: [
+          { id: Number, question: “question”, answer: “answer” },
+          { id: Number, question: “question”, answer: “answer” },
+          { id: Number, question: “question”, answer: “answer” },	
+        ]
+      },
+      {
+        topic: "deck topic b",
+        cards: [
+          { id: Number, question: “question”, answer: “answer” },
+          { id: Number, question: “question”, answer: “answer” },
+          { id: Number, question: “question”, answer: “answer” },	
+        ]
+      },
+      {
+        topic: "deck topic c",
+        cards: [
+          { id: Number, question: “question”, answer: “answer” },
+          { id: Number, question: “question”, answer: “answer” },
+          { id: Number, question: “question”, answer: “answer” },	
+        ]
+      }
+    ]
+  },
 }

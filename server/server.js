@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const apiRouter = require('./routes/api');
+const loginRouter = require('./routes/loginRoute');
 
 const app = express();
 
@@ -30,7 +31,6 @@ app.use('/build', express.static(path.resolve(__dirname, '../build/')));
 /**
  * handle requests for static files
  */
-
 app.use('/', express.static(path.resolve(__dirname, '../client/')));
 
 /**
