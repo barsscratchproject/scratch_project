@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const apiRouter = require('./routes/api');
+const loginRouter = require('./routes/loginRoute');
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 // flow check
 // comment out cookie parser when using postman
+/*
 app.use((req, res, next) => {
   console.log(`
   🍒🍒🍒 FLOW METHOD 🍒🍒🍒
@@ -21,7 +23,7 @@ app.use((req, res, next) => {
   PARAMS: ${req.params}\n`);
   return next();
 });
-
+*/
 /**
  * serve the bundle file
  */
@@ -30,12 +32,25 @@ app.use('/build', express.static(path.resolve(__dirname, '../build/')));
 /**
  * handle requests for static files
  */
-
 app.use('/', express.static(path.resolve(__dirname, '../client/')));
 
 /**
  * define route handlers
  */
+app.use(
+  '/cookieTester',
+  express.static(path.resolve(__dirname, './cookieTester/cookieTester.html'))
+);
+app.use(
+  '/cookieTester.js',
+  express.static(path.join(__dirname, '/cookieTester/cookieTester.js'))
+);
+
+app.use('/login', loginRouter, (req, res, next) => {
+  console.log('back in server!');
+  res.send(200).json('ok!');
+});
+// app.use('/xyz', cookieRouter);
 app.use('/api', apiRouter);
 
 // catch-all route handler for an requests to an unknown route

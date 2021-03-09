@@ -10,11 +10,14 @@ userController.createUser = function (req, res, next) {
   })
     .then((doc) => {
       console.log('User created!');
-      return res.status(200).json(doc);
+      res.locals.newUser = doc;
+      console.log('after assigning to locals');
+      console.log(res.locals.newUser);
+      next();
     })
     .catch((err) => {
       console.log('Error creating user!');
-      return res.status(400).json(err);
+      next(err);
     });
 };
 
@@ -31,6 +34,7 @@ userController.findUser = function (req, res, next) {
   });
 };
 
+// delete user
 userController.deleteUser = function (req, res, next) {
   // db.inventory.find( { tags: { $eq: [ "A", "B" ] } } )
 };
@@ -49,7 +53,7 @@ userController.createDeck = function (req, res) {
         console.log(doc);
         return res.status(200).json('user updated!');
       }
-    },
+    }
   );
 };
 
@@ -96,7 +100,7 @@ userController.findDeck = function (req, res, next) {
         console.log(doc[0].decks);
         return res.status(200).json(doc[0].decks);
       }
-    },
+    }
   );
 };
 
@@ -115,7 +119,7 @@ userController.editDeck = function (req, res, next) {
         console.log('successfully edited deck!');
         res.status(200).json(doc);
       }
-    },
+    }
   );
 };
 
@@ -143,14 +147,14 @@ userController.deleteDeck = function (req, res, next) {
         console.log('successfully updated document!');
         return res.status(200).json(doc);
       }
-    },
+    }
   );
 };
 
 // create a card
 userController.createCard = function (req, res) {
   console.log('createCard invoked!');
-  User.updateOne(
+  User.findOneAndUpdate(
     { userName: req.params.user, 'decks.topic': req.body.topic },
     {
       $push: {
@@ -161,6 +165,7 @@ userController.createCard = function (req, res) {
         },
       },
     },
+    { new: true },
     (err, doc) => {
       if (err) {
         console.log('error adding card!');
@@ -169,7 +174,7 @@ userController.createCard = function (req, res) {
         console.log('successfully added card!');
         res.status(200).json(doc);
       }
-    },
+    }
   );
 };
 
@@ -189,7 +194,7 @@ userController.deleteCard = function (req, res) {
         console.log('successfully deleting card!');
         res.status(200).json(doc);
       }
-    },
+    }
   );
 };
 
