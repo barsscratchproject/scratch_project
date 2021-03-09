@@ -1,4 +1,4 @@
-DATA MODELS AND FUNCTIONALITY
+DATA MODELS
 Data Model Summary
 The model below shows the structure of data as saved in the mongoDB database.
 
@@ -7,10 +7,6 @@ Each object within the users object represents an app user. Users are instantiat
 
 // Decks Array
 The 'decks' property value is an array of objects. Each object within the decks array represents a different deck for the user. When the user is first created, the decks property has a value of an empty array.
-
-//  
-
-Note: 'users' below represents the users collection in the database cluster. This user collection is shown as an object in the model that follows, but it's not certain that mongoDB collections are themselves objects or some other type of data structure entirely. The application should function fine without this knowledge.
 
 Data Model:
 users : {
@@ -75,5 +71,3 @@ users : {
     ]
   },
 }
-
-Functionality

@@ -13,7 +13,6 @@ app.use(express.json());
 
 // flow check
 // comment out cookie parser when using postman
-/*
 app.use((req, res, next) => {
   console.log(`
   🍒🍒🍒 FLOW METHOD 🍒🍒🍒
@@ -23,7 +22,7 @@ app.use((req, res, next) => {
   PARAMS: ${req.params}\n`);
   return next();
 });
-*/
+
 /**
  * serve the bundle file
  */
@@ -37,20 +36,6 @@ app.use('/', express.static(path.resolve(__dirname, '../client/')));
 /**
  * define route handlers
  */
-app.use(
-  '/cookieTester',
-  express.static(path.resolve(__dirname, './cookieTester/cookieTester.html'))
-);
-app.use(
-  '/cookieTester.js',
-  express.static(path.join(__dirname, '/cookieTester/cookieTester.js'))
-);
-
-app.use('/login', loginRouter, (req, res, next) => {
-  console.log('back in server!');
-  res.send(200).json('ok!');
-});
-// app.use('/xyz', cookieRouter);
 app.use('/api', apiRouter);
 
 // catch-all route handler for an requests to an unknown route

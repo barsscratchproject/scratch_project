@@ -2,7 +2,6 @@ const User = require('../models/Models');
 const userController = {};
 
 // create a user
-// Name lowercased to help normalize future functions with user document
 userController.createUser = function (req, res, next) {
   console.log('create user detected!');
   User.create({
@@ -56,19 +55,6 @@ userController.createDeck = function (req, res) {
     }
   );
 };
-
-// create card -
-// find all cards -
-// find specific card <--- maybe
-// edit a specific card
-// delete specific card
-// return just decks - X
-// Find topic passed into params - X
-// find specific topic in specific user deck - X
-// find all decks - X
-// delete deck - X
-// make sure new deck is created with cards object - X
-// edit deck - X
 
 // find all the decks
 userController.findAllDecks = function (req, res, next) {
