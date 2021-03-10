@@ -4,11 +4,10 @@ const apiRouter = require('./routes/api');
 const passport = require('passport');
 require('dotenv').config()
 // const loginRouter = require('./routes/loginRoute');
-
 const app = express();
 const router = express.Router();
 
-//express passport for google Oauth
+// express passport for google Oauth
 app.use(passport.initialize());
 
 const oauthRouter = require('./routes/oauth');
@@ -17,6 +16,7 @@ const oauthRouter = require('./routes/oauth');
  */
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// app.use(bodyParser.urlencoded({extended: true}));
 
 // flow check
 // comment out cookie parser when using postman
@@ -35,15 +35,18 @@ app.use((req, res, next) => {
  */
 app.use('/build', express.static(path.resolve(__dirname, '../build/')));
 
+app.get('/navbar', (req, res, next) => {
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+});
 /**
  * handle requests for static files
  */
- app.use('/', express.static(path.resolve(__dirname, '../client/')));
- 
+app.use('/', express.static(path.resolve(__dirname, '../client/')));
+
 // app.use('/', express.static(path.resolve(__dirname, '../client/')));
 app.use('/', oauthRouter, (req, res, next) => {
-  console.log('im back in the server file')
-  res.redirect('/');
+  console.log('im back in the server file');
+  res.redirect('/navbar');
 });
 
 /**

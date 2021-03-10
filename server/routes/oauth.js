@@ -1,9 +1,10 @@
 const express = require('express');
 const path = require('path');
 const router = express.Router();
-
+// const mongoose = require('mongoose');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const cookieSession = require('cookie-session');
 
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -23,6 +24,7 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.CLIENT_SECRET, // Add the secret here
   callbackURL: '/auth/google/callback',
 }, (accessToken, refreshToken, profile, done) => {
+  // need logic here to save user into a MongoDB
   done(null, profile, accessToken);
 }));
 
@@ -35,9 +37,10 @@ router.get('/auth/google', passport.authenticate('google', {
 router.get('/auth/google/callback', passport.authenticate('google', {
   scope: ['profile', 'email'],
 }), (req, res, next) => {
-  console.log('I made it to the end of the middleware chain')
+  console.log('res.locals:+=============', res.locals);
+  console.log('req: ++++++++', req.body)
+  console.log('I made it to the end of the middleware chain');
   return next();
-  // res.redirect(`msrm42app://msrm42app.io?id=${req.user.id}`);
 });
 
 module.exports = router;
