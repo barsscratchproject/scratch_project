@@ -1,10 +1,17 @@
 const express = require('express');
 const path = require('path');
 const apiRouter = require('./routes/api');
-const loginRouter = require('./routes/loginRoute');
+const passport = require('passport');
+
+// const loginRouter = require('./routes/loginRoute');
 
 const app = express();
+const router = express.Router();
 
+//express passport for google Oauth
+app.use(passport.initialize());
+
+const oauthRouter = require('./routes/oauth');
 /**
  * handle parsing request body
  */
@@ -31,12 +38,14 @@ app.use('/build', express.static(path.resolve(__dirname, '../build/')));
 /**
  * handle requests for static files
  */
-app.use('/', express.static(path.resolve(__dirname, '../client/')));
+
+// app.use('/', express.static(path.resolve(__dirname, '../client/')));
+app.use('/', oauthRouter);
 
 /**
  * define route handlers
  */
-app.use('/api', apiRouter);
+// app.use('/api', apiRouter);
 
 // catch-all route handler for an requests to an unknown route
 app.all('*', (req, res) => {
