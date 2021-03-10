@@ -19,8 +19,8 @@ router.get('/', (req, res, next) => {
 });
 
 passport.use(new GoogleStrategy({
-  clientID: '725363229404-lbiidbg34bukh64utg18cn29bbarj9ej.apps.googleusercontent.com', // Add your clientID
-  clientSecret: 'WGIzRO9kIZ3KmmuWm9nK9obP', // Add the secret here
+  clientID: process.env.CLIENT_ID, // Add your clientID
+  clientSecret: process.env.CLIENT_SECRET, // Add the secret here
   callbackURL: '/auth/google/callback',
 }, (accessToken, refreshToken, profile, done) => {
   done(null, profile, accessToken);
