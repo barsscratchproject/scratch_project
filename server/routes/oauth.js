@@ -35,10 +35,8 @@ router.get('/auth/google', passport.authenticate('google', {
 router.get('/auth/google/callback', passport.authenticate('google', {
   scope: ['profile', 'email'],
 }), (req, res, next) => {
-  // next();
-  // return next(); 
-  // res.redirect('http://localhost:3000/main');
-  res.send('it worked');
+  console.log('I made it to the end of the middleware chain')
+  return next();
   // res.redirect(`msrm42app://msrm42app.io?id=${req.user.id}`);
 });
 
