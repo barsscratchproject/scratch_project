@@ -14,7 +14,7 @@ mongoose
   .then(() => console.log('Connected to Mongo DB!'))
   .catch((err) => console.log(`Error with Mongo DB connection: ${err}`));
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 // User schema - Represents users in the application
 // minimize: false allows us to save empty objects
