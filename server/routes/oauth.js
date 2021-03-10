@@ -36,6 +36,8 @@ router.get('/auth/google/callback', passport.authenticate('google', {
   scope: ['profile', 'email'],
 }), (req, res, next) => {
   // next();
+  // return next(); 
+  // res.redirect('http://localhost:3000/main');
   res.send('it worked');
   // res.redirect(`msrm42app://msrm42app.io?id=${req.user.id}`);
 });

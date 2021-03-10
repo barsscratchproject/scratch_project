@@ -39,8 +39,8 @@ app.use('/build', express.static(path.resolve(__dirname, '../build/')));
  * handle requests for static files
  */
 
-// app.use('/', express.static(path.resolve(__dirname, '../client/')));
-app.use('/', oauthRouter);
+app.use('/', express.static(path.resolve(__dirname, '../client/')));
+app.use('/auth', oauthRouter);
 
 /**
  * define route handlers
