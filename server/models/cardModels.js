@@ -15,8 +15,6 @@ module.exports = {
     }
 };
 
-
-
 // create table public_deck(
 //   pd_id serial primary key,
 //   name varchar not null,

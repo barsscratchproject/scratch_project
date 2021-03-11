@@ -64,6 +64,7 @@ class NavBar extends Component {
   componentDidMount() {
     // get the decks of the current logged-in user
     fetch(`/api/${this.state.username}/deck/all`)
+    // fetch(`/api`)
       .then((data) => data.json())
       .then((data) => {
         console.log('fetched data: ', data);
@@ -229,18 +230,6 @@ class NavBar extends Component {
         </nav>
         <Switch>
           {/* need to render something for the home route? */}
-          <Route path="/" exact>
-            <Dashboard 
-              user={this.state.username} 
-              decks={this.state.decks} 
-              editDeck={this.editDeck}
-              deleteDeck={this.deleteDeck}
-              cards={this.state.mathCards} 
-              addDeck={this.addDeck}
-              addCard={this.addCard}
-
-            />
-          </Route>
 
           <Route path="/dashboard" exact>
             <Dashboard
@@ -281,6 +270,18 @@ class NavBar extends Component {
               user={this.state.username}
               decks={this.state.decks}
               cards={this.state.mathCards}
+            />
+          </Route>
+          <Route path="/navbar" exact>
+            <Dashboard 
+              user={this.state.username} 
+              decks={this.state.decks} 
+              editDeck={this.editDeck}
+              deleteDeck={this.deleteDeck}
+              cards={this.state.mathCards} 
+              addDeck={this.addDeck}
+              addCard={this.addCard}
+
             />
           </Route>
         </Switch>
