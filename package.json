@@ -29,6 +29,7 @@
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "pg": "^8.5.1",
+    "postgres": "^1.0.2",
     "react": "^17.0.1",
     "react-card-flip": "^1.1.0",
     "react-dom": "^17.0.1",
