@@ -35,7 +35,8 @@ app.use((req, res, next) => {
  */
 app.use('/build', express.static(path.resolve(__dirname, '../build/')));
 
-app.get('/navbar', (req, res, next) => {
+app.use('/api', apiRouter);
+app.get('/navbar', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 /**
@@ -44,7 +45,7 @@ app.get('/navbar', (req, res, next) => {
 app.use('/', express.static(path.resolve(__dirname, '../client/')));
 
 // app.use('/', express.static(path.resolve(__dirname, '../client/')));
-app.use('/', oauthRouter, (req, res, next) => {
+app.use('/', oauthRouter, (req, res) => {
   console.log('im back in the server file');
   res.redirect('/navbar');
 });
@@ -52,7 +53,9 @@ app.use('/', oauthRouter, (req, res, next) => {
 /**
  * define route handlers
  */
-// app.use('/api', apiRouter);
+// app.use('/api', (req, res) => {
+//   res.send('response from API');
+// });
 
 // catch-all route handler for an requests to an unknown route
 app.all('*', (req, res) => {
