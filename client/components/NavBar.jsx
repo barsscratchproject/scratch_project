@@ -88,6 +88,7 @@ class NavBar extends Component {
       });
   }
 
+
   addCard(e) {
     // get the questions and answers from user input
     const newQuestion = document.getElementById('newQuestion').value;
@@ -177,6 +178,7 @@ class NavBar extends Component {
   // EDITDECK MIDDLEWARE HAS NOT BEEN COMPLETED
   editDeck(event) {
     console.log('EDIT DECK BUTTON CLICKED');
+
     // window.location.href=`/api/barsTwo/deck`
     // fetch(`/api/barsTwo/deck`)
     //   .then(res => res.json())
@@ -201,6 +203,13 @@ class NavBar extends Component {
         <nav className="navBar">
           <Link
             className="navLinks"
+            to="/navbar/quiz"
+            style={{ textDecoration: 'none' }}
+          >
+            <p>Quiz Me!</p>{' '}
+          </Link>
+          <Link
+            className="navLinks"
             to="/navbar/dashboard"
             style={{ textDecoration: 'none' }}
           >
@@ -213,13 +222,6 @@ class NavBar extends Component {
             style={{ textDecoration: 'none' }}
           >
             <p>Deck</p>{' '}
-          </Link>
-          <Link
-            className="navLinks"
-            to="/navbar/quiz"
-            style={{ textDecoration: 'none' }}
-          >
-            <p>Quiz Me!</p>{' '}
           </Link>
           {/* <Link
             className="navLinks"

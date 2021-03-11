@@ -12,16 +12,18 @@ class QuizCard extends Component {
     return (
       <div className="allFlashcards">
         <h1>{this.props.currentTopic}</h1>
-        <div className="singleTopic">
-          <div className="flashcardContainerFront">
-            <h2 className="flashcardQuestion">{this.props.question}</h2>
+          <div className="flashcardContainerFront" className="card-container">
+          <div className="card">
+            <h2 className="flashcardQuestion" className="front">{this.props.question}</h2>
+          {/* <div className="back"> */}
+            <h2 className="flashcardAnswer" className="back">
+       {this.props.answer}
+              </h2>
           </div>
-
-          <div className="flashcardContainerBack">
-            <h2 className="flashcardAnswer">{this.props.answer}</h2>
+          {/* </div> */}
           </div>
+          {/* <div className="flashcardContainerBack" className="flashcardAnswer" className="back"> */}
         </div>
-      </div>
     );
   }
 }

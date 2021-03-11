@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import ReactCardFlip from 'react-card-flip';
+
 import QuizCard from '../components/QuizCard.jsx';
 
 class Quiz extends Component {
+
+  
   render() {
     // console.log('QUIZ QUESTION', this.props.cards);
     // console.log('QUIZ ANSWER', this.props.cards.answer);

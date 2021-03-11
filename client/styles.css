@@ -566,7 +566,6 @@ onSubmit={(e) => {
 /* } */
 
 
-
 .allFlashcards {
   width: 100%;
   display: flex;
@@ -582,7 +581,7 @@ onSubmit={(e) => {
 
 .singleTopic {
   background: white;
-  display: flex;
+  /* display: flex; */
   justify-content: space-around;
   align-items: center;
   /* flex-direction: column; */
@@ -596,7 +595,7 @@ onSubmit={(e) => {
 .flashcardContainerFront {
   /* border: 1px solid green; */
 
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   /* background-image: */
@@ -609,16 +608,17 @@ onSubmit={(e) => {
   padding: 0px 0px;
   /* margin: 0px auto auto auto; */
   /* margin: auto;  */
-  position: relative;
+  position: center;
   top: 50%;
-  transform: translateY(-50%); 
+  /* transform: translateY(-50%);  */
 }
 
 .flashcardContainerBack {
   /* border: 1px solid blue; */
 
 
-  display: flex;
+  /* display: flex; */
+
   /* align-items: center; */
   justify-content: center;
   /* padding: 30px 0px 0px 0px; */
@@ -633,7 +633,7 @@ onSubmit={(e) => {
   /* margin: auto;  */
   position: relative;
   top: 50%;
-  transform: translateY(-50%); 
+  /* transform: translateY(-50%);  */
 
 }
 
@@ -646,6 +646,7 @@ onSubmit={(e) => {
   margin-top: 53px;
   line-height: 25px;
 }
+
 
 /*
 <div className="quizContainer">
@@ -667,3 +668,59 @@ ____
 </div>
 </div>
 */
+
+
+.card-container {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0 12px;
+  perspective: 900px;
+  text-align: center;
+}
+.card {
+position: relative;
+  height: 14rem;
+  width: 500px;
+  margin: 0px auto auto auto;
+transition: all 0.6s ease;
+transform-style: preserve-3d;
+}
+
+.front, .back {
+  position: absolute;
+  /* background: #FEC606; */
+  /* background-image:
+  linear-gradient(180deg, white 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
+  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, rgb(159, 168, 255) 1px, rgb(159, 168, 255) calc(1.5rem + 1px)); */
+  top: 0;
+  left: 0;
+  height: 14rem;
+  width: 500px;
+  border-radius: 5px;
+  color: black;
+  box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+  backface-visibility: hidden;
+}
+.front {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+.back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background-image:
+  linear-gradient(180deg, white 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
+  repeating-linear-gradient(0deg, transparent, transparent 1.5rem, rgb(159, 168, 255) 1px, rgb(159, 168, 255) calc(1.5rem + 1px));
+}
+ 
+.card-container:hover .card {
+  transform: rotateY(180deg);
+}
+.back {
+  transform: rotateY(180deg);
+}
+
