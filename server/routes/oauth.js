@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID, // Add your clientID
   clientSecret: process.env.CLIENT_SECRET, // Add the secret here
-  callbackURL: '/auth/google/callback',
+  callbackURL: '/navbar',
 }, (accessToken, refreshToken, profile, done) => {
   // need logic here to save user into a MongoDB
   done(null, profile, accessToken);
@@ -34,11 +34,11 @@ router.get('/auth/google', passport.authenticate('google', {
 }));
 
 // Google Oauth2 callback url
-router.get('/auth/google/callback', passport.authenticate('google', {
+router.get('/navbar', passport.authenticate('google', {
   scope: ['profile', 'email'],
 }), (req, res, next) => {
-  console.log('res.locals:+=============', res.locals);
-  console.log('req: ++++++++', req.body)
+  console.log('res.locals:+=============', res.locals.json());
+  console.log('req: ++++++++', req.body.json());
   console.log('I made it to the end of the middleware chain');
   return next();
 });

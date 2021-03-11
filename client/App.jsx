@@ -32,13 +32,16 @@ class App extends Component {
           </Route>
         </Switch>
       </div>
-    );
-  }
+
+
+);
+}
 }
 
 
-// <div>
-// <NavBar />
-// </div>
+/* <div>
+<NavBar />
+</div> */
+
 
 export default App;
