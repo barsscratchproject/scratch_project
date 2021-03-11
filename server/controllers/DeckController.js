@@ -8,6 +8,7 @@ deckController.displayDecks = (req, res, next) => {
     db.query(deckQuery)
       .then(result => {
           const publicDecks = result.rows.name;
+          
           res.locals.publicDecks = publicDecks;
           return next();
       })

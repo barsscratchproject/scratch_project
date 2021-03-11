@@ -1,12 +1,17 @@
 const express = require('express');
-const cookieController = require('../controllers/cookieController');
+
 const userController = require('../controllers/userController');
 
 const router = express.Router();
 
 // Decks...
 // ...finds all decks for user (:user)
-router.get('/:user/deck/all', userController.findAllDecks);
+router.get('/:user/deck/all', 
+  userController.displayAllDecks, 
+  (req, res) => {
+    return res.status(200).json(res.locals.decks)
+  }
+);
 // ...finds specific deck (:deck) for user (:user)
 router.get('/:user/deck/', userController.findDeck);
 // ...creates new deck for existing user (:user)
@@ -27,13 +32,15 @@ router.delete('/:user/deleteCard', userController.deleteCard);
 // ...finds existing user
 router.get('/user/:user', userController.findUser);
 // ...creates user, sets cookie ()
-router.post(
-  '/user',
-  userController.createUser,
-  cookieController.setCookie,
-  (req, res) => {
-    res.status(200).json('cookie set!');
-  }
-);
+// router.post(
+//   '/user',
+//   userController.createUser
+//   cookieController.setCookie,
+//   (req, res) => {
+//     res.status(200).json('cookie set!');
+//   }
+// );
 
 module.exports = router;
+
+
