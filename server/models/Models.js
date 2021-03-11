@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MONGO_URI =
+const mongood =
   'mongodb+srv://barsadmin:bh4iDXf8mI5eAyiz@cluster0.gmc5l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 mongoose
