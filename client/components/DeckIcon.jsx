@@ -9,11 +9,33 @@ class DeckIcon extends Component {
   render() {
     return (
       // <h1>THIS IS AN ICON</h1>
+      <div> 
+        <Link
+            to="/navbar/quiz"
+            style={{ textDecoration: 'none' }}
+          >
+        {/* <a href='http://localhost:3000/navbar/quiz'> */}
       <div className="singleDeckIcon">
         {/* <div className="quizBtnContainer"> */}
         {/* <button className="singleDeckQuizMeBtn">Quiz me!</button> */}
         {/* </div> */}
-        <h1 className="oneDeck">{this.props.topic}</h1>
+        {/* <Link
+            className="singleDeckEditBtn"
+            to="/navbar/quiz"
+            style={{ textDecoration: 'none' }}
+          >
+            <button 
+            className="singleDeckEditBtn"
+            topic={this.props.topic}
+            // <Link to '/deck/' />
+            onClick={(e) => {
+              e.preventDefault();
+              this.props.editDeck(e);
+            }}
+            > */}
+              <h1 className="oneDeck">{this.props.topic}</h1>
+            {/* </button> */}
+            {/* </Link> */}
         <div className="editBtnContainer">
           {/* <Switch>
             <Route path="/deck" exact>
@@ -40,7 +62,7 @@ class DeckIcon extends Component {
           </button> */}
           <Link
             className="singleDeckEditBtn"
-            to="/deck"
+            to="/navbar/deck"
             style={{ textDecoration: 'none' }}
           >
             <button 
@@ -51,7 +73,7 @@ class DeckIcon extends Component {
               e.preventDefault();
               this.props.editDeck(e);
             }}
-            >Edit
+            >Deck
           </button>
           </Link>
 
@@ -62,7 +84,7 @@ class DeckIcon extends Component {
             onClick={(e) => {
               e.preventDefault();
               this.props.deleteDeck(e);
-              <Link to="/deck"></Link>
+              <Link to="/navbar/deck"></Link>
             }}
           >Delete
           </button>
@@ -70,7 +92,7 @@ class DeckIcon extends Component {
 
 
           <Switch>
-          <Route path="/deck">
+          <Route path="/navbar/deck">
             <Deck
               user={this.props.user} 
               decks={this.props.decks}
@@ -79,9 +101,12 @@ class DeckIcon extends Component {
           </Route>
         </Switch>
 
-        
         </div>
+        </div>
+        {/* </a> */}
+        </Link>
       </div>
+
     );
   }
 }

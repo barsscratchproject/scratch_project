@@ -1,36 +1,36 @@
-const User = require('../models/Models');
+const db = require('../models/Models.js');
 const userController = {};
 
 // create a user
 userController.createUser = function (req, res, next) {
-  console.log('create user detected!');
-  User.create({
-    userName: req.body.userName.toLowerCase(),
-  })
-    .then((doc) => {
-      console.log('User created!');
-      res.locals.newUser = doc;
-      console.log('after assigning to locals');
-      console.log(res.locals.newUser);
-      next();
-    })
-    .catch((err) => {
-      console.log('Error creating user!');
-      next(err);
-    });
+  // console.log('create user detected!');
+  // User.create({
+  //   userName: req.body.userName.toLowerCase(),
+  // })
+  //   .then((doc) => {
+  //     console.log('User created!');
+  //     res.locals.newUser = doc;
+  //     console.log('after assigning to locals');
+  //     console.log(res.locals.newUser);
+  //     next();
+  //   })
+  //   .catch((err) => {
+  //     console.log('Error creating user!');
+  //     next(err);
+  //   });
 };
 
 // find a user
 userController.findUser = function (req, res, next) {
-  User.find({ userName: req.params.user }, (err, docs) => {
-    if (err) {
-      console.log('Error!, ', err);
-      return res.status(400).json('Error retrieving user! ' + err);
-    } else {
-      console.log('found user!');
-      return res.status(200).json(docs);
-    }
-  });
+  // User.find({ userName: req.params.user }, (err, docs) => {
+  //   if (err) {
+  //     console.log('Error!, ', err);
+  //     return res.status(400).json('Error retrieving user! ' + err);
+  //   } else {
+  //     console.log('found user!');
+  //     return res.status(200).json(docs);
+  //   }
+  // });
 };
 
 // delete user
@@ -40,37 +40,45 @@ userController.deleteUser = function (req, res, next) {
 
 // create a deck
 userController.createDeck = function (req, res) {
-  User.findOneAndUpdate(
-    { userName: req.params.user },
-    { $push: { decks: { topic: req.body.topic, cards: {} } } },
-    { new: true },
-    (err, doc) => {
-      if (err) {
-        console.log('error adding deck!');
-        return res.status(400).json(err);
-      } else {
-        console.log('deck created!');
-        console.log(doc);
-        return res.status(200).json(doc);
-      }
-    }
-  );
+  // User.findOneAndUpdate(
+  //   { userName: req.params.user },
+  //   { $push: { decks: { topic: req.body.topic, cards: {} } } },
+  //   { new: true },
+  //   (err, doc) => {
+  //     if (err) {
+  //       console.log('error adding deck!');
+  //       return res.status(400).json(err);
+  //     } else {
+  //       console.log('deck created!');
+  //       console.log(doc);
+  //       return res.status(200).json(doc);
+  //     }
+  //   }
+  // );
 };
 
 // find all the decks
-userController.findAllDecks = function (req, res, next) {
-  console.log('findAllDecks invoked!');
-  User.find({ userName: req.params.user }, 'decks', (err, doc) => {
-    if (err) {
-      console.log('error finding all decks!');
-      return res.status(400).json(err);
-    } else {
-      console.log('found all decks!');
-      console.log(doc);
-      return res.status(200).json(doc);
-    }
-  });
+userController.displayAllDecks = (req, res, next) => {
+  console.log('displayAllDecks invoked!');
+
+  const query = 'SELECT name FROM public_deck';
+
+  db.query(query)
+    .then(response => {
+      console.log(response.rows);
+      res.locals.decks = response.rows;
+      return next();
+    }).catch((err) => {
+      console.log('Error finding decks', err);
+      return next({
+        log: 'userController finding decks failed',
+        message: { err: 'getting decks from database failed' },
+      });
+    });
 };
+
+
+;
 
 // find a specific deck
 userController.findDeck = function (req, res, next) {

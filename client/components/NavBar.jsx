@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link, BrowserRouter } from 'react-router-dom';
 import Dashboard from '../main/Dashboard.jsx';
 import Login from '../main/Login.jsx';
 import Deck from '../main/Deck.jsx';
@@ -64,6 +64,7 @@ class NavBar extends Component {
   componentDidMount() {
     // get the decks of the current logged-in user
     fetch(`/api/${this.state.username}/deck/all`)
+    // fetch(`/api`)
       .then((data) => data.json())
       .then((data) => {
         console.log('fetched data: ', data);
@@ -86,6 +87,7 @@ class NavBar extends Component {
         this.setState({ decks: userDecks, allDecksCards: userInventory, mathCards: tempCards});
       });
   }
+
 
   addCard(e) {
     // get the questions and answers from user input
@@ -176,6 +178,7 @@ class NavBar extends Component {
   // EDITDECK MIDDLEWARE HAS NOT BEEN COMPLETED
   editDeck(event) {
     console.log('EDIT DECK BUTTON CLICKED');
+
     // window.location.href=`/api/barsTwo/deck`
     // fetch(`/api/barsTwo/deck`)
     //   .then(res => res.json())
@@ -196,10 +199,18 @@ class NavBar extends Component {
     // console.log('NAVBAR this.state.decks', this.state.decks);
     return (
       <body>
+        <BrowserRouter>
         <nav className="navBar">
           <Link
             className="navLinks"
-            to="/dashboard"
+            to="/navbar/quiz"
+            style={{ textDecoration: 'none' }}
+          >
+            <p>Quiz Me!</p>{' '}
+          </Link>
+          <Link
+            className="navLinks"
+            to="/navbar/dashboard"
             style={{ textDecoration: 'none' }}
           >
             <p>DASHBOARD</p>{' '}
@@ -207,29 +218,71 @@ class NavBar extends Component {
 
           <Link
             className="navLinks"
-            to="/deck"
+            to="/navbar/deck"
             style={{ textDecoration: 'none' }}
           >
             <p>Deck</p>{' '}
           </Link>
-          <Link
-            className="navLinks"
-            to="/quiz"
-            style={{ textDecoration: 'none' }}
-          >
-            <p>Quiz Me!</p>{' '}
-          </Link>
-          <Link
+          {/* <Link
             className="navLinks"
             to="/login"
             style={{ textDecoration: 'none' }}
           >
             <p>LOGOUT</p>{' '}
-          </Link>
+          </Link> */}
         </nav>
         <Switch>
           {/* need to render something for the home route? */}
-          <Route path="/" exact>
+
+          <Route 
+          path="/navbar/dashboard" 
+          component={
+            () => <Dashboard
+            user={this.state.username}
+            decks={this.state.decks}
+            editDeck={this.editDeck}
+            deleteDeck={this.deleteDeck}
+            cards={this.state.mathCards} 
+            addDeck={this.addDeck}
+            addCard={this.addCard}
+          />
+          }>
+          </Route>
+
+          <Route 
+          path="/navbar/deck" 
+          component={
+              () =>  <Deck
+              user={this.state.username}
+              decks={this.state.decks}
+              cards={this.state.mathCards}
+              addCard={this.addCard}
+              deleteCard={this.deleteCard}
+            />
+            }>
+          </Route>
+
+          <Route 
+          path="/navbar/quiz" 
+          component={
+            () => <Quiz
+            user={this.state.username}
+            decks={this.state.decks}
+            cards={this.state.mathCards}
+            topic={this.state.currentTopic}
+          />
+          }>
+          </Route>
+
+          {/* <Route path="/login">
+            <Login
+              userLogin={this.userLogin}
+              user={this.state.username}
+              decks={this.state.decks}
+              cards={this.state.mathCards}
+            />
+          </Route> */}
+          <Route path="/navbar" exact>
             <Dashboard 
               user={this.state.username} 
               decks={this.state.decks} 
@@ -241,51 +294,9 @@ class NavBar extends Component {
 
             />
           </Route>
-
-          <Route path="/dashboard" exact>
-            <Dashboard
-              user={this.state.username}
-              decks={this.state.decks}
-              editDeck={this.editDeck}
-              deleteDeck={this.deleteDeck}
-              cards={this.state.mathCards} 
-              addDeck={this.addDeck}
-              addCard={this.addCard}
-
-            />
-          </Route>
-
-          <Route path="/deck">
-            <Deck
-              user={this.state.username}
-              decks={this.state.decks}
-              cards={this.state.mathCards}
-              addCard={this.addCard}
-              deleteCard={this.deleteCard}
-      
-            />
-          </Route>
-
-          <Route path="/quiz">
-            <Quiz
-              user={this.state.username}
-              decks={this.state.decks}
-              cards={this.state.mathCards}
-              topic={this.state.currentTopic}
-            />
-          </Route>
-
-          <Route path="/login">
-            <Login
-              userLogin={this.userLogin}
-              user={this.state.username}
-              decks={this.state.decks}
-              cards={this.state.mathCards}
-            />
-          </Route>
         </Switch>
 
-
+        </BrowserRouter>
       </body>
     );
   }

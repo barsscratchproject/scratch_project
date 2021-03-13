@@ -1,68 +1,19 @@
-// const mongoose = require('mongoose');
+//ITERATIVE PSQL PPOL
 
-// // const MONGO_URI = 'mongodb+srv://ryanmcdaniel:admin@cluster0.mg5pj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-// const MONGO_URI =
-//   'mongodb+srv://barsadmin:bh4iDXf8mI5eAyiz@cluster0.gmc5l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-
-// mongoose
-//   .connect(MONGO_URI, {
-//     // options for the connect method to parse the URI
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     // sets the name of the DB that our collections are part of
-//     // dbName: 'scratch-project',
-//   })
-//   .then(() => console.log('Connected to Mongo DB!'))
-//   .catch((err) => console.log(`Error with Mongo DB connection: ${err}`));
-
-// const Schema = mongoose.Schema;
-
-// /*
-// USER SCHEMA
-// */
-// const userSchema = new Schema({
-//   userName: String,
-//   decks: [],
-// });
-
-// // creats a model for the 'user' collection that will be part of the export
-// const User = mongoose.model('user', userSchema);
-
-// /*
-// DECK SCHEMA
-// */
-// const deckSchema = new Schema({
-//   topic: String,
-//   cards: [Object],
-//   // deck: [Object],
-//   // deck: [
-//   //   {
-//   //     // cardNumber: { type: Number },
-//   //     // type of ObjectId makes this behave like a foreign key referencing the 'card' collection
-//   //     type: Schema.Types.ObjectId,
-//   //     ref: 'card',
-//   //   },
-//   // ],
-// });
-
-// // creats a model for the 'deck' collection that will be part of the export
-// const Deck = mongoose.model('deck', deckSchema);
-
-// /*
-// CARD SCHEMA
-// */
-// const cardSchema = new Schema({
-//   cardNumber: { type: Number },
-//   question: { type: String, required: true },
-//   answer: { type: String, required: true },
-// });
-
-// // creats a model for the 'card' collection that will be part of the export
-// const Card = mongoose.model('card', cardSchema);
-
-// // exports all the models in an object to be used in the controller
-// module.exports = {
-//   User,
-//   Deck,
-//   Card,
-// };
+// INSERT INTO cards (pd_id, front_question, back_answer)
+// VALUES
+//     (1, 'What is Earth''s largest continent?', 'Asia'),
+//     (1, 'What is the biggest country by land mass?', 'Russia'),
+//     (1, 'What country has the most natural lakes?', 'Canada'),
+//     (1, 'How many time zones does China have?', '1'),
+//     (1, 'How many timezones does Russia have?', '11'),
+//     (2, 'Who was the Chinese ruler that built the Great Wall of China?', 'Qin Shi Huang'),
+//     (2, 'What was the capital of the Inca empire?', 'Cusco'),
+//     (2, 'Who became the Head of Rome after the assassination of Julius Caesar?', 'Octavian (Augustus Caesar)'),
+//     (2, 'Of what ancient empire was Persepolis, the ceremonial centre?', 'The Persian Empire'),
+//     (2, 'In what age did the Neanderthal live?', 'Paleolithic age'),
+//     (3, 'What does HTML stand for?', 'Hypertext Markup Language'),
+//     (3, 'Alpha in RGB extension named RGBA, defines', 'Opacity'),
+//     (3, 'What is the difference between var, let, and const', 'Let and const are ES6 syntax keywords used to declare block-scoped variables, providing an added layer of protection from side effects as compared to variables delcared using the pre-ES6 var keyword, which is function scoped.'),
+//     (3, 'What is the difference between stack and queue?', 'Queue is always First In, First Out. Stack is always Last In, First Out'),
+//     (3, 'Explain Implicit Type Coercion in JavaScript.', 'Implicit type coercion in JavaScript is automatic conversion of value from one data type to another. It takes place when the operands of an expression are of different data types.');

@@ -1,20 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Login = (props) => (
-  <form
-    id="inputForm"
-    onSubmit={(e) => {
-      e.preventDefault();
-      props.userLogin(e);
-    }}
-  >
-    <br />
-    <label>Username:</label>
-    <br />
-    <br />
-    <input id="login" type="text" />
-    <button type="submit">Login</button>
-  </form>
-);
+function Login (props) {
+  const oauthURL = "http://localhost:3000/auth/google"
+  return (
+    <div className='oauth'>
+      <a href={`${oauthURL}`}>
+        <img
+          src='http://pngimg.com/uploads/google/google_PNG19635.png'
+          alt="Google's G"
+        ></img>
+      </a>
+    </div>
+  )
+};
 
 export default Login;
